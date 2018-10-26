@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8446725821836AF5003BE1D9 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8446725721836AF5003BE1D9 /* Package.swift */; };
 		D725CCC5216CBE6D001A6974 /* TelegramPickerResourceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D725CCC4216CBE6D001A6974 /* TelegramPickerResourceProvider.swift */; };
 		D725CCC8216CD16F001A6974 /* ExampleTelegramPickerLocalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D725CCC7216CD16F001A6974 /* ExampleTelegramPickerLocalizer.swift */; };
 		D7361716217F35BC0015D824 /* TelegramPickerGalleryItemsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7361715217F35BC0015D824 /* TelegramPickerGalleryItemsDataSource.swift */; };
@@ -126,6 +127,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8446725721836AF5003BE1D9 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		D725CCC4216CBE6D001A6974 /* TelegramPickerResourceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelegramPickerResourceProvider.swift; sourceTree = "<group>"; };
 		D725CCC7216CD16F001A6974 /* ExampleTelegramPickerLocalizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTelegramPickerLocalizer.swift; sourceTree = "<group>"; };
 		D7361715217F35BC0015D824 /* TelegramPickerGalleryItemsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelegramPickerGalleryItemsDataSource.swift; sourceTree = "<group>"; };
@@ -348,6 +350,7 @@
 		FA3BB26A2008B41B00E06F8F = {
 			isa = PBXGroup;
 			children = (
+				8446725721836AF5003BE1D9 /* Package.swift */,
 				FA3BB2882008B45600E06F8F /* README.md */,
 				FA3BB2CE2008B9FA00E06F8F /* LICENSE */,
 				FA3BB2A92008B46800E06F8F /* Example */,
@@ -855,6 +858,7 @@
 				FA3BB2AF2008B46800E06F8F /* Label.swift in Sources */,
 				FA005E9620162BB5001EA8C6 /* Assets.swift in Sources */,
 				FA3BB2BA2008B46900E06F8F /* UIAlertController+Extensions.swift in Sources */,
+				8446725821836AF5003BE1D9 /* Package.swift in Sources */,
 				FA3BB2C22008B46900E06F8F /* PickerViewViewController.swift in Sources */,
 				D725CCC5216CBE6D001A6974 /* TelegramPickerResourceProvider.swift in Sources */,
 				F27C7E4321771E5300266414 /* CGPoint.swift in Sources */,
