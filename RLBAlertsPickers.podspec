@@ -20,5 +20,6 @@ Pod::Spec.new do |s|
   s.source_files  = "Source/**/*.{swift}"
   s.resource  = "Source/Pickers/Locale/Countries.bundle"
   s.resources = "Example/Resources/*.xcassets"
+  s.requires_arc = true
 
 end
