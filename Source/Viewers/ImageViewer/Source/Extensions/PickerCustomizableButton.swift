@@ -13,7 +13,7 @@ enum PickerButtonState: String {
     case selected
     case hightlited
     
-    static func state(byUIKit state: UIControlState) -> PickerButtonState {
+    static func state(byUIKit state: UIControl.State) -> PickerButtonState {
         switch state {
         case .normal:
             return .normal
@@ -35,7 +35,7 @@ class PickerCustomizableButton: UIButton {
     
     //MARK: Public Properties
     
-    func setBackgroundColor(_ color: UIColor, state: UIControlState) {
+    func setBackgroundColor(_ color: UIColor, state: UIControl.State) {
         backgroundColorStateStorage[PickerButtonState.state(byUIKit: state)] = color
         updateBackgroundColor()
     }

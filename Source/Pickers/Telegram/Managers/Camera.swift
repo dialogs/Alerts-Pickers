@@ -108,15 +108,26 @@ public final class Camera {
         }
         
         private static func createQueue() -> DispatchQueue {
-            return DispatchQueue.init(label: "CameraQueue \(arc4random())",
-                                      qos: .background,
-                                      attributes: [],
-                                      autoreleaseFrequency: .workItem,
-                                      target: nil)
+            if #available(iOS 10.0, *) {
+                return DispatchQueue.init(label: "CameraQueue \(arc4random())",
+                        qos: .background,
+                        attributes: [],
+                        autoreleaseFrequency: .workItem,
+                        target: nil)
+            } else {
+                return DispatchQueue.init(label: "CameraQueue \(arc4random())",
+                        qos: .background,
+                        attributes: [],
+                        target: nil)
+            }
         }
         
         private static func createDevice() -> AVCaptureDevice? {
-            return AVCaptureDevice.default(.builtInWideAngleCamera, for: AVMediaType.video, position: .back)
+            if #available(iOS 10.0, *){
+                return AVCaptureDevice.default(.builtInWideAngleCamera, for: AVMediaType.video, position: .back)
+            }else {
+                return AVCaptureDevice.devices().first(where: {device in device.position == .back && device.hasMediaType(.video)})
+            }
         }
         
         public static func == (lhs: PreviewStream, rhs: PreviewStream) -> Bool {
