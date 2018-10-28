@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   s.author       = { "dillidon" => "dillidon@gmail.com" }
   s.platform     = :ios, '9.0'
   s.swift_version = '4.2'
-  s.source       = { :git => "https://github.com/dialogs/Alerts-Pickers.git", :branch => 'master' } #:tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/dialogs/Alerts-Pickers.git", :tag => "#{s.version}" }
   s.source_files  = "Source/**/*.{swift}"
   s.resource  = "Source/Pickers/Locale/Countries.bundle"
   s.resources = "Example/Resources/*.xcassets"
