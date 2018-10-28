@@ -101,36 +101,40 @@ public struct Contacts {
     /// Fetching Contacts from phone with Grouped By Alphabet
     ///
     /// - Parameter completionHandler: It will return Dictonary of Alphabets with Their Sorted Respective Contacts.
-     @available(iOS 10.0, *)
      public static func fetchContactsGroupedByAlphabets(completionHandler: @escaping (GroupedByAlphabetsFetchResults) -> ()) {
-        
-        let contactStore: CNContactStore = CNContactStore()
-        let fetchRequest: CNContactFetchRequest = CNContactFetchRequest(keysToFetch: defaultKeysToFetch)
-        var orderedContacts: [String: [CNContact]] = [String: [CNContact]]()
-        CNContact.localizedString(forKey: CNLabelPhoneNumberiPhone)
-        fetchRequest.mutableObjects = false
-        fetchRequest.unifyResults = true
-        fetchRequest.sortOrder = .givenName
-        do {
-            try contactStore.enumerateContacts(with: fetchRequest, usingBlock: { (contact, _) -> Void in
-                // Ordering contacts based on alphabets in firstname
-                var key: String = "#"
-                // If ordering has to be happening via family name change it here.
-                let firstLetter = contact.givenName.count > 1 ? contact.givenName[0..<1] : "?"
-                if firstLetter.containsAlphabets {
-                    key = firstLetter.uppercased()
-                }
-                var contacts = [CNContact]()
-                if let segregatedContact = orderedContacts[key] {
-                    contacts = segregatedContact
-                }
-                contacts.append(contact)
-                orderedContacts[key] = contacts
-            })
-        } catch {
-            completionHandler(GroupedByAlphabetsFetchResults.error(error: error))
-        }
-        completionHandler(GroupedByAlphabetsFetchResults.success(response: orderedContacts))
+
+         let contactStore: CNContactStore = CNContactStore()
+         let fetchRequest: CNContactFetchRequest = CNContactFetchRequest(keysToFetch: defaultKeysToFetch)
+         var orderedContacts: [String: [CNContact]] = [String: [CNContact]]()
+         CNContact.localizedString(forKey: CNLabelPhoneNumberiPhone)
+         if #available(iOS 10.0, *) {
+             fetchRequest.mutableObjects = false
+         } else {
+             // Fallback on earlier versions
+             // phil will todo
+         }
+         fetchRequest.unifyResults = true
+         fetchRequest.sortOrder = .givenName
+         do {
+             try contactStore.enumerateContacts(with: fetchRequest, usingBlock: { (contact, _) -> Void in
+                 // Ordering contacts based on alphabets in firstname
+                 var key: String = "#"
+                 // If ordering has to be happening via family name change it here.
+                 let firstLetter = contact.givenName.count > 1 ? contact.givenName[0..<1] : "?"
+                 if firstLetter.containsAlphabets {
+                     key = firstLetter.uppercased()
+                 }
+                 var contacts = [CNContact]()
+                 if let segregatedContact = orderedContacts[key] {
+                     contacts = segregatedContact
+                 }
+                 contacts.append(contact)
+                 orderedContacts[key] = contacts
+             })
+         } catch {
+             completionHandler(GroupedByAlphabetsFetchResults.error(error: error))
+         }
+         completionHandler(GroupedByAlphabetsFetchResults.success(response: orderedContacts))
      }
     
     /// Fetching Contacts from phone
@@ -209,9 +213,9 @@ public struct Contacts {
 
 
 public struct Telephone {
-    
+
     // PRAGMA MARK: - CoreTelephonyCheck
-    
+
     /// Check if iOS Device supports phone calls
     /// - parameter completionHandler: Returns Bool.
     public static func isCapableToCall(completionHandler: @escaping (_ result: Bool) -> ()) {
@@ -229,9 +233,9 @@ public struct Telephone {
             // iOS Device is not capable for making calls
             completionHandler(false)
         }
-        
+
     }
-    
+
     /// Check if iOS Device supports sms
     /// - parameter completionHandler: Returns Bool.
     public static func isCapableToSMS(completionHandler: @escaping (_ result: Bool) -> ()) {
@@ -240,9 +244,9 @@ public struct Telephone {
         } else {
             completionHandler(false)
         }
-        
+
     }
-    
+
     /// Convert CNPhoneNumber To digits
     /// - parameter CNPhoneNumber: Phone number.
     public static func CNPhoneNumberToString(CNPhoneNumber: CNPhoneNumber) -> String {
@@ -251,7 +255,7 @@ public struct Telephone {
         }
         return ""
     }
-    
+
     /// Make call to given number.
     /// - parameter CNPhoneNumber: Phone number.
     public static func makeCall(CNPhoneNumber: CNPhoneNumber) {

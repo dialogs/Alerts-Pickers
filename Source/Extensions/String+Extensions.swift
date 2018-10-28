@@ -42,12 +42,12 @@ internal extension String {
     
     /// Underlined string
     internal var underline: NSAttributedString {
-        return NSAttributedString(string: self, attributes: [.underlineStyle: NSUnderlineStyle.styleSingle.rawValue])
+        return NSAttributedString(string: self, attributes: [.underlineStyle: NSUnderlineStyle.single.rawValue])
     }
     
     /// Strikethrough string.
     internal var strikethrough: NSAttributedString {
-        return NSAttributedString(string: self, attributes: [.strikethroughStyle: NSNumber(value: NSUnderlineStyle.styleSingle.rawValue as Int)])
+        return NSAttributedString(string: self, attributes: [.strikethroughStyle: NSNumber(value: NSUnderlineStyle.single.rawValue as Int)])
     }
     
     /// Italic string.

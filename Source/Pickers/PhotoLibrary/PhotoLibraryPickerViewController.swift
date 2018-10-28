@@ -12,7 +12,7 @@ extension UIAlertController {
     ///   - images: for content to select
     ///   - selection: type and action for selection of image/images
     
-    public func addPhotoLibraryPicker(flow: UICollectionViewScrollDirection, paging: Bool, selection: PhotoLibraryPickerViewController.Selection) {
+    public func addPhotoLibraryPicker(flow: UICollectionView.ScrollDirection, paging: Bool, selection: PhotoLibraryPickerViewController.Selection) {
         let selection: PhotoLibraryPickerViewController.Selection = selection
         var asset: PHAsset?
         var assets: [PHAsset] = []
@@ -96,8 +96,13 @@ final public class PhotoLibraryPickerViewController: UIViewController {
         $0.register(ItemWithImage.self, forCellWithReuseIdentifier: String(describing: ItemWithImage.self))
         $0.showsVerticalScrollIndicator = false
         $0.showsHorizontalScrollIndicator = false
-        $0.decelerationRate = UIScrollViewDecelerationRateFast
+        $0.decelerationRate = .fast
 //        $0.contentInsetAdjustmentBehavior = .always
+        if #available(iOS 11.0, *){
+            $0.contentInsetAdjustmentBehavior = .always;
+        }else {
+            self.automaticallyAdjustsScrollViewInsets = true
+        }
         $0.bounces = true
         $0.backgroundColor = .clear
         $0.layer.masksToBounds = false
@@ -118,7 +123,7 @@ final public class PhotoLibraryPickerViewController: UIViewController {
     
     // MARK: Initialize
     
-    required public init(flow: UICollectionViewScrollDirection, paging: Bool, selection: Selection) {
+    required public init(flow: UICollectionView.ScrollDirection, paging: Bool, selection: Selection) {
         super.init(nibName: nil, bundle: nil)
         
         self.selection = selection
@@ -180,8 +185,13 @@ final public class PhotoLibraryPickerViewController: UIViewController {
             let productName = Bundle.main.dlgpicker_appName
             let alert = UIAlertController(style: .alert, title: "Permission denied", message: "\(productName) does not have access to contacts. Please, allow the application to access to your photo library.")
             alert.addAction(title: "Settings", style: .destructive) { action in
-                if let settingsURL = URL(string: UIApplicationOpenSettingsURLString) {
-                    UIApplication.shared.open(settingsURL)
+                if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
+                    if #available(iOS 10.0, *) {
+                        UIApplication.shared.open(settingsURL)
+                    } else {
+                        UIApplication.shared.openURL(settingsURL)
+                        // Fallback on earlier versions
+                    }
                 }
             }
             alert.addAction(title: "OK", style: .cancel) { [unowned self] action in

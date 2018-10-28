@@ -178,7 +178,7 @@ final public class TelegramPickerViewController: UIViewController {
         $0.allowsMultipleSelection = true
         $0.showsVerticalScrollIndicator = false
         $0.showsHorizontalScrollIndicator = false
-        $0.decelerationRate = UIScrollViewDecelerationRateFast
+        $0.decelerationRate = .fast
         $0.contentInset = UI.insets
         $0.backgroundColor = .clear
         $0.layer.masksToBounds = false
@@ -399,8 +399,13 @@ final public class TelegramPickerViewController: UIViewController {
             let productName = Bundle.main.dlgpicker_appName
             let alert = UIAlertController(style: .alert, title: "Permission denied", message: "\(productName) does not have access to camera. Please, allow the application to access to camera.")
             alert.addAction(title: "Settings", style: .destructive) { action in
-                if let settingsURL = URL(string: UIApplicationOpenSettingsURLString) {
-                    UIApplication.shared.open(settingsURL)
+                if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
+                    if #available(iOS 10.0, *) {
+                        UIApplication.shared.open(settingsURL)
+                    } else {
+                        UIApplication.shared.openURL(settingsURL)
+                        // Fallback on earlier versions
+                    }
                 }
             }
             alert.addAction(title: "OK", style: .cancel) { [unowned self] action in
@@ -1022,7 +1027,7 @@ private extension TelegramPickerViewController {
             GalleryConfigurationItem.overlayColor(UIColor(white: 0.035, alpha: 1)),
             GalleryConfigurationItem.overlayColorOpacity(1),
             GalleryConfigurationItem.overlayBlurOpacity(1),
-            GalleryConfigurationItem.overlayBlurStyle(UIBlurEffectStyle.light),
+            GalleryConfigurationItem.overlayBlurStyle(UIBlurEffect.Style.light),
             
             GalleryConfigurationItem.videoControlsColor(.white),
             

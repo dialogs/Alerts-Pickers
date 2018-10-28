@@ -116,7 +116,7 @@ class ViewController: UIViewController {
     
     // MARK: Properties
     
-    fileprivate var alertStyle: UIAlertControllerStyle = .actionSheet
+    fileprivate var alertStyle: UIAlertController.Style = .actionSheet
     
     fileprivate lazy var segments: SegmentedControl = {
         let styles: [String] = ["Alert", "ActionSheet"]
@@ -137,7 +137,7 @@ class ViewController: UIViewController {
         $0.register(TypeOneCell.self, forCellWithReuseIdentifier: TypeOneCell.identifier)
         $0.showsVerticalScrollIndicator = false
         $0.showsHorizontalScrollIndicator = false
-        $0.decelerationRate = UIScrollViewDecelerationRateFast
+        $0.decelerationRate = .fast
         //$0.contentInsetAdjustmentBehavior = .never
         $0.bounces = true
         $0.backgroundColor = .white
