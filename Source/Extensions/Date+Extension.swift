@@ -3,17 +3,17 @@ import Foundation
 extension Date {
     
     /// User’s current calendar.
-    public var calendar: Calendar {
+    var calendar: Calendar {
         return Calendar.current
     }
     
     /// Era.
-    public var era: Int {
+    var era: Int {
         return calendar.component(.era, from: self)
     }
     
     /// Year.
-    public var year: Int {
+    var year: Int {
         get {
             return calendar.component(.year, from: self)
         }
@@ -23,12 +23,12 @@ extension Date {
     }
     
     /// Quarter.
-    public var quarter: Int {
+    var quarter: Int {
         return calendar.component(.quarter, from: self)
     }
     
     /// Month.
-    public var month: Int {
+    var month: Int {
         get {
             return calendar.component(.month, from: self)
         }
@@ -38,22 +38,22 @@ extension Date {
     }
     
     /// Week of year.
-    public var weekOfYear: Int {
+    var weekOfYear: Int {
         return calendar.component(.weekOfYear, from: self)
     }
     
     /// Week of month.
-    public var weekOfMonth: Int {
+    var weekOfMonth: Int {
         return calendar.component(.weekOfMonth, from: self)
     }
     
     /// Weekday.
-    public var weekday: Int {
+    var weekday: Int {
         return calendar.component(.weekday, from: self)
     }
     
     /// Day.
-    public var day: Int {
+    var day: Int {
         get {
             return calendar.component(.day, from: self)
         }
@@ -63,7 +63,7 @@ extension Date {
     }
     
     /// Hour.
-    public var hour: Int {
+    var hour: Int {
         get {
             return calendar.component(.hour, from: self)
         }
@@ -73,7 +73,7 @@ extension Date {
     }
     
     /// Minutes.
-    public var minute: Int {
+    var minute: Int {
         get {
             return calendar.component(.minute, from: self)
         }
@@ -83,7 +83,7 @@ extension Date {
     }
     
     /// Seconds.
-    public var second: Int {
+    var second: Int {
         get {
             return calendar.component(.second, from: self)
         }
@@ -93,27 +93,27 @@ extension Date {
     }
     
     /// Nanoseconds.
-    public var nanosecond: Int {
+    var nanosecond: Int {
         return calendar.component(.nanosecond, from: self)
     }
     
     /// Check if date is in future.
-    public var isInFuture: Bool {
+    var isInFuture: Bool {
         return self > Date()
     }
     
     /// Check if date is in past.
-    public var isInPast: Bool {
+    var isInPast: Bool {
         return self < Date()
     }
     
     /// Check if date is in today.
-    public var isInToday: Bool {
+    var isInToday: Bool {
         return self.day == Date().day && self.month == Date().month && self.year == Date().year
     }
     
     /// ISO8601 string of format (yyyy-MM-dd'T'HH:mm:ss.SSS) from date.
-    public var iso8601String: String {
+    var iso8601String: String {
         // https://github.com/justinmakaila/NSDate-ISO-8601/blob/master/NSDateISO8601.swift
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
@@ -124,7 +124,7 @@ extension Date {
     }
     
     /// Nearest five minutes to date.
-    public var nearestFiveMinutes: Date {
+    var nearestFiveMinutes: Date {
         var components = Calendar.current.dateComponents([.year, .month , .day , .hour , .minute], from: self)
         guard let min = components.minute else {
             return self
@@ -138,7 +138,7 @@ extension Date {
     }
     
     /// Nearest ten minutes to date.
-    public var nearestTenMinutes: Date {
+    var nearestTenMinutes: Date {
         var components = Calendar.current.dateComponents([.year, .month , .day , .hour , .minute], from: self)
         guard let min = components.minute else {
             return self
@@ -152,7 +152,7 @@ extension Date {
     }
     
     /// Nearest quarter to date.
-    public var nearestHourQuarter: Date {
+    var nearestHourQuarter: Date {
         var components = Calendar.current.dateComponents([.year, .month , .day , .hour , .minute], from: self)
         guard let min = components.minute else {
             return self
@@ -166,7 +166,7 @@ extension Date {
     }
     
     /// Nearest half hour to date.
-    public var nearestHalfHour: Date {
+    var nearestHalfHour: Date {
         var components = Calendar.current.dateComponents([.year, .month , .day , .hour , .minute], from: self)
         guard let min = components.minute else {
             return self
@@ -180,12 +180,12 @@ extension Date {
     }
     
     /// Time zone used by system.
-    public var timeZone: TimeZone {
+    var timeZone: TimeZone {
         return self.calendar.timeZone
     }
     
     /// UNIX timestamp from date.
-    public var unixTimestamp: Double {
+    var unixTimestamp: Double {
         return timeIntervalSince1970
     }
     
