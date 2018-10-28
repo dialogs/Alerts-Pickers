@@ -484,7 +484,7 @@ public extension Date {
 
 
 // MARK: - Initializers
-public extension Date {
+extension Date {
     
     /// Create a new date form calendar components.
     ///
@@ -499,7 +499,7 @@ public extension Date {
     ///   - minute: Minute (default is current minute).
     ///   - second: Second (default is current second).
     ///   - nanosecond: Nanosecond (default is current nanosecond).
-    public init(
+    init(
         calendar: Calendar? = Calendar.current,
         timeZone: TimeZone? = TimeZone.current,
         era: Int? = Date().era,
