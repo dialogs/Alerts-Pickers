@@ -144,17 +144,13 @@ final public class TelegramPickerViewController: UIViewController {
     
     let assetsCollection = AssetsCollection.init()
     
-    var buttons: [ButtonType] {
-        switch mode {
-        case .normal: return [.photoOrVideo, .file, .location, .contact]
-        case .bigPhotoPreviews: return [.sendPhotos, .photoAsFile]
-        case .documentType: return [.documentAsFile, .photoAsFile]
-        }
-    }
+    var buttons: [ButtonType]  = []
     
     private var photoLayout: PhotoLayout {
         return collectionView.collectionViewLayout as! PhotoLayout
     }
+    
+    private var singlePhotoSelectionMode = false
     
     var preferredTableHeaderHeight: CGFloat {
         switch mode {
@@ -252,10 +248,20 @@ final public class TelegramPickerViewController: UIViewController {
         self.localizer = localizer
         self.configurator = configurator
         super.init(nibName: nil, bundle: nil)
+        self.setButtonsArray()
     }
     
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setButtonsArray() {
+        
+        switch mode {
+        case .normal:  buttons = [.photoOrVideo, .file, .location, .contact]
+        case .bigPhotoPreviews: buttons = [.sendPhotos, .photoAsFile]
+        case .documentType: buttons = [.documentAsFile, .photoAsFile]
+        }
     }
     
     func sizeForPreviewPreload(asset: PHAsset) -> CGSize {
@@ -563,11 +569,15 @@ final public class TelegramPickerViewController: UIViewController {
                                                           displacedViewsDataSource: self,
                                                           configuration: config)
         
-        galleryViewController.selectionCompletion = { [weak self, weak galleryViewController] button in
-            if let picker = self, let controller = galleryViewController {
-                picker.handleGallerySelection(ofItemAt: indexPath, controller: controller, tappedButton: button)
+        // in singlePhotoSelectionMode we do not allow multiple selections
+        if !singlePhotoSelectionMode {
+            galleryViewController.selectionCompletion = { [weak self, weak galleryViewController] button in
+                if let picker = self, let controller = galleryViewController {
+                    picker.handleGallerySelection(ofItemAt: indexPath, controller: controller, tappedButton: button)
+                }
             }
         }
+        
         present(galleryViewController, animated: false, completion: nil)
     }
     
@@ -646,6 +656,14 @@ final public class TelegramPickerViewController: UIViewController {
             let cell = tableView.cellForRow(at: IndexPath(row: idx, section: 0)) as? LikeButtonCell {
             cell.textLabel?.text = self.localizer.localized(buttonType: .sendPhotoAsFile(count: self.selectedAssets.count))
         }
+    }
+    
+    // clear all additional picking content options, cause we need just photos
+    public func setSinglePhotoSelectionMode() {
+        self.buttons = []
+        self.singlePhotoSelectionMode = true
+        tableView.reloadData()
+        collectionView.reloadData()
     }
     
     func applyMode(_ newMode: Mode, collectionIndexPath: IndexPath? = nil) {
@@ -1156,11 +1174,23 @@ extension TelegramPickerViewController: CollectionViewCustomContentCellDelegate 
         
         switch item {
         case .photo(let asset), .video(let asset):
-            if selectedAssets.contains(asset) {
-                selectedAssets.remove(asset)
+            
+            // new singlePhotoSelectionMode flag, that allows to restrict only one photo item selection
+            if !singlePhotoSelectionMode {
+                if selectedAssets.contains(asset) {
+                    selectedAssets.remove(asset)
+                } else {
+                    selectedAssets.append(asset)
+                }
             } else {
-                selectedAssets.append(asset)
+                if selectedAssets.contains(asset) {
+                    selectedAssets.remove(asset)
+                } else {
+                    selectedAssets = [asset]
+                }
             }
+            
+            
         default:
             break
         }
