@@ -476,8 +476,8 @@ final public class TelegramPickerViewController: UIViewController {
         case .denied, .restricted:
             /// User has denied the current app to access the camera.
             let alert = localizer.localizedAlert(failure: .noAccessToCamera)
-            if let alert = alert {
-                alert.show()
+            dismiss(animated: false) {
+                alert?.show()
             }
         }
     }
