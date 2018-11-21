@@ -497,6 +497,7 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
     }
     
     @objc fileprivate func sendItem(sender: UIButton) {
+        UIApplication.applicationWindow.windowLevel = UIWindowLevelNormal
         itemsDelegate?.sendItem(self, at: currentIndex)
     }
     
@@ -604,7 +605,6 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
     
     /// Invoked when closed programmatically
     open func close() {
-        
         closeDecorationViews(programmaticallyClosedCompletion)
     }
     

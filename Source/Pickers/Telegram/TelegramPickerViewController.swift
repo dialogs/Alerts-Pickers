@@ -483,7 +483,6 @@ final public class TelegramPickerViewController: UIViewController {
     }
     
     func checkStatus() {
-        Log("status = \(PHPhotoLibrary.authorizationStatus())")
         switch PHPhotoLibrary.authorizationStatus() {
             
         case .notDetermined:
