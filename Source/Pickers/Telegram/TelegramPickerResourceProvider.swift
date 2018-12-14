@@ -22,6 +22,11 @@ public enum LocalizableButtonType {
     case addContact
 }
 
+public enum LocalizableItem {
+    case noCameraAccessCell
+    case noPhotosAccessCell
+}
+
 public enum Failure {
     case noAccessToPhoto
     case noAccessToCamera
@@ -31,6 +36,8 @@ public enum Failure {
 public protocol TelegramPickerResourceProvider {
     
     func localized(buttonType: LocalizableButtonType) -> String
+    
+    func localized(item: LocalizableItem) -> String
     
     /// Perform dismisser in your action block to dismiss this alert from a presenting controller.
     func localizedAlert(failure: Failure) -> UIAlertController?

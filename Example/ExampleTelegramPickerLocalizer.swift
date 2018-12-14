@@ -26,6 +26,13 @@ public struct ExampleTelegramPickerLocalizer: TelegramPickerResourceProvider {
         }
     }
     
+    public func localized(item: LocalizableItem) -> String {
+        switch item {
+        case .noCameraAccessCell: return "No access to camera"
+        case .noPhotosAccessCell: return "No access to photos"
+        }
+    }
+    
     private func noCameraAccessAlert() -> UIAlertController {
         /// User has denied the current app to access the camera.
         let productName = Bundle.main.dlgpicker_appName
