@@ -161,7 +161,10 @@ class PhotoLayout: UICollectionViewLayout {
         if insertingIndexPaths.contains(itemIndexPath) {
             return attributesForInsertionItem(at: itemIndexPath)
         }
-        return previousAttributes[itemIndexPath.item]
+        if previousAttributes.indices.contains(itemIndexPath.item) {
+            return previousAttributes[itemIndexPath.item]
+        }
+        return nil
     }
     
     private func attributesForInsertionItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
