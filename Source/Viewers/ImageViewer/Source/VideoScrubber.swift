@@ -44,7 +44,9 @@ open class VideoScrubber: UIControl {
 
         willSet {
             if let player = player {
-                
+
+                player.pause()
+
                 ///KVO
                 player.removeObserver(self, forKeyPath: "status")
                 player.removeObserver(self, forKeyPath: "rate")
@@ -227,7 +229,7 @@ open class VideoScrubber: UIControl {
 
     func updateDuration() {
 
-        if let duration = self.player?.currentItem?.duration {
+        if let duration = self.player?.currentItem?.asset.duration {
 
             self.duration = (duration.isNumeric) ? duration.seconds : nil
         }
