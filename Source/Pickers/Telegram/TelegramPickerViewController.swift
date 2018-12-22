@@ -687,14 +687,8 @@ final public class TelegramPickerViewController: UIViewController {
         switchSelection(streamItem: item)
         
         let becomeSelected = isSelected(streamItem: item)
-        
-        if becomeSelected {
-            tappedButton.isSelected = true
-            tappedButton.setTitle(String(selectedAssets.count), for: .selected)
-        }
-        else {
-            tappedButton.isSelected = false
-        }
+
+        tappedButton.setSelected(becomeSelected, withTitle: becomeSelected ? String(self.selectedAssets.count) : nil, animated: true)
         
         updateVisibleSelectionIndexes()
         updateModeIfNeed(from: indexPath)
@@ -709,7 +703,8 @@ final public class TelegramPickerViewController: UIViewController {
             let item = items[indexPath.item]
             switch item {
             case .photo(let _asset), .video(let _asset):
-                updateAssetSelection(cell: collectionView.cellForItem(at: indexPath) as? CollectionViewCustomContentCell<UIImageView>, asset: _asset, at: indexPath)
+                let animated = mode == .bigPhotoPreviews ? selectedAssets.count > 0 : selectedAssets.count > 1
+                updateAssetSelection(cell: collectionView.cellForItem(at: indexPath) as? CollectionViewCustomContentCell<UIImageView>, asset: _asset, at: indexPath, animated: animated)
             default:()
             }
         }
@@ -915,7 +910,7 @@ extension TelegramPickerViewController: UICollectionViewDataSource {
             
             photoCell.delegate = self
             let size = sizeForPreviewPreload(asset: asset)
-            updateAssetSelection(cell: photoCell, asset: asset, at: indexPath)
+            updateAssetSelection(cell: photoCell, asset: asset, at: indexPath, animated: false)
             // We must sure that cell still visible and represents same asset
             Assets.resolve(asset: asset, size: size) { [weak self] new in
                 self?.updatePhoto(new, asset: asset)
@@ -927,7 +922,7 @@ extension TelegramPickerViewController: UICollectionViewDataSource {
             }
             videoCell.delegate = self
             let size = sizeForPreviewPreload(asset: asset)
-            updateAssetSelection(cell: videoCell, asset: asset, at: indexPath)
+            updateAssetSelection(cell: videoCell, asset: asset, at: indexPath, animated: false)
             // We must sure that cell still visible and represents same asset
             Assets.resolve(asset: asset, size: size) { [weak self] new in
                 self?.updatePhoto(new, asset: asset)
@@ -1237,12 +1232,11 @@ private extension TelegramPickerViewController {
         ]
     }
     
-    func updateAssetSelection<T>(cell: CollectionViewCustomContentCell<T>? = nil, asset: PHAsset, at indexPath: IndexPath) where T: UIView {
-        if selectedAssets.contains(asset) {
-            cell?.updateSelectionIndex(isSelected: true, with: (selectedAssets.index(of: asset) ?? 0) + 1)
-        } else {
-            cell?.updateSelectionIndex(isSelected: false, with: 0)
-        }
+    func updateAssetSelection<T>(cell: CollectionViewCustomContentCell<T>? = nil, asset: PHAsset, at indexPath: IndexPath, animated: Bool) where T: UIView {
+        let isSelected = selectedAssets.contains(asset)
+        let index = isSelected ? (selectedAssets.index(of: asset) ?? 0) + 1 : 0
+        let cellAnimated = isSelected ? selectedAssets.count > 1 : selectedAssets.count > 0
+        cell?.updateSelectionIndex(isSelected: isSelected, with: index, animated: animated && cellAnimated)
     }
     
     func updateModeIfNeed(from indexPath: IndexPath) {
