@@ -12,6 +12,7 @@ import Foundation
 public protocol TelegramPickerConfigurator {
     
     func modifyGalleryConfig(_ config: inout GalleryConfiguration)
+    func needCallSelectionForAssetsBeforeCompletion() -> Bool
     
 }
 
@@ -23,6 +24,10 @@ open class SimpleTelegramPickerConfigurator: TelegramPickerConfigurator {
     
     public init() {
         // do nothing
+    }
+
+    public func needCallSelectionForAssetsBeforeCompletion() -> Bool {
+        return true
     }
     
 }
