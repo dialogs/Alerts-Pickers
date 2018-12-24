@@ -27,7 +27,7 @@ open class SimpleTelegramPickerConfigurator: TelegramPickerConfigurator {
     }
 
     public func needCallSelectionForAssetsBeforeCompletion() -> Bool {
-        return true
+        return false
     }
     
 }
