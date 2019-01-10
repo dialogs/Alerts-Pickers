@@ -790,10 +790,15 @@ final public class TelegramPickerViewController: UIViewController {
         case .photoAsFile:
             let assets = selectedAssets
             let selection = self.selection
-            alertController?.dismiss(animated: true) {
+            if configurator.needCallSelectionForAssetsBeforeCompletion() {
                 selection(TelegramSelectionType.photosAsDocuments(assets))
+                alertController?.dismiss(animated: true, completion: nil)
+            } else {
+                alertController?.dismiss(animated: true) {
+                    selection(TelegramSelectionType.photosAsDocuments(assets))
+                }
             }
-            
+
         case .documentAsFile:
             let selection = self.selection
             alertController?.dismiss(animated: true) {
@@ -818,8 +823,13 @@ final public class TelegramPickerViewController: UIViewController {
         case .sendPhotos:
             let assets = selectedAssets
             let selection = self.selection
-            alertController?.dismiss(animated: true) {
+            if configurator.needCallSelectionForAssetsBeforeCompletion() {
                 selection(TelegramSelectionType.media(assets))
+                alertController?.dismiss(animated: true, completion: nil)
+            } else {
+                alertController?.dismiss(animated: true) {
+                    selection(TelegramSelectionType.media(assets))
+                }
             }
             
         case .file:
@@ -1026,9 +1036,22 @@ extension TelegramPickerViewController: UICollectionViewDataSource {
     
     private func dismissWithSelectionItem(item: TelegramSelectionType) {
         let selection = self.selection
-        alertController?.dismiss(animated: true, completion: {
-            selection(item)
-        })
+        switch item {
+        case .media(_):
+            if configurator.needCallSelectionForAssetsBeforeCompletion() {
+                selection(item)
+                alertController?.dismiss(animated: true, completion: nil)
+            } else {
+                alertController?.dismiss(animated: true) {
+                    selection(item)
+                }
+            }
+
+        default:
+            alertController?.dismiss(animated: true, completion: {
+                selection(item)
+            })
+        }
     }
     
 }
@@ -1118,10 +1141,15 @@ extension TelegramPickerViewController: GalleryItemsDelegate {
         
         let assets = self.selectedAssets
         let selection = self.selection
-        
-        self.parent?.presentingViewController?.dismiss(animated: true, completion: {
+
+        if configurator.needCallSelectionForAssetsBeforeCompletion() {
             selection(TelegramSelectionType.media(assets))
-        })
+            self.parent?.presentingViewController?.dismiss(animated: true, completion: nil)
+        } else {
+            alertController?.dismiss(animated: true) {
+                selection(TelegramSelectionType.media(assets))
+            }
+        }
     }
     
     func dismiss(galleryViewController: GalleryViewController, behavior: DismissBehavior) {
@@ -1133,8 +1161,13 @@ extension TelegramPickerViewController: GalleryItemsDelegate {
             
         case .dismissGaleryFirst(animated: let galeryAnimated, thenDismissPickerAnimated: let pickerAnimated):
             galleryViewController.closeGallery(galeryAnimated) {
-                self.alertController?.dismiss(animated: pickerAnimated) {
+                if self.configurator.needCallSelectionForAssetsBeforeCompletion() {
                     selection(TelegramSelectionType.media(assets))
+                    self.alertController?.dismiss(animated: pickerAnimated, completion: nil)
+                } else {
+                    self.alertController?.dismiss(animated: pickerAnimated) {
+                        selection(TelegramSelectionType.media(assets))
+                    }
                 }
             }
             
@@ -1142,8 +1175,13 @@ extension TelegramPickerViewController: GalleryItemsDelegate {
             guard let alert = self.parent, let alertPresenter = alert.presentingViewController else {
                 return
             }
-            alertPresenter.dismiss(animated: animated) {
+            if self.configurator.needCallSelectionForAssetsBeforeCompletion() {
                 selection(TelegramSelectionType.media(assets))
+                alertPresenter.dismiss(animated: animated, completion: nil)
+            } else {
+                self.alertController?.dismiss(animated: animated) {
+                    selection(TelegramSelectionType.media(assets))
+                }
             }
         }
     }
