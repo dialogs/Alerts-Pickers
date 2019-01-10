@@ -260,12 +260,9 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
             self.view.addSubview(selectionButton)
         }
         
-        if itemsDelegate?.isItemSelected(at: currentIndex) == true {
-            selectionButton.isSelected = true
-            selectionButton.setTitle(String(itemsDelegate?.itemSelectionIndex(at: currentIndex) ?? 1), for: .selected)
-        } else {
-            selectionButton.isSelected = false
-        }
+        let isSelected = itemsDelegate?.isItemSelected(at: currentIndex) ?? false
+        let title = String(itemsDelegate?.itemSelectionIndex(at: currentIndex) ?? 1)
+        selectionButton.setSelected(isSelected, withTitle: isSelected ? title : nil, animated: false)
     }
     
     fileprivate func configureSendButton() {

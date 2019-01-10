@@ -149,8 +149,18 @@ extension UIButton {
         
         button.backgroundColor = PickerStyle.shared.sendButtonBackgroundColor
         button.layer.cornerRadius = button.bounds.size.width / 2
-        
+
         return button
     }
     
+    func setSelected(_ isSelected: Bool, withTitle title: String?, animated: Bool) {
+        UIView.transition(with: self, duration: animated ? 0.15 : 0.0, options: .transitionCrossDissolve, animations: {
+            self.isSelected = isSelected
+            if isSelected {
+                self.setTitle(title, for: .selected)
+            } else {
+                self.setTitle(title, for: .normal)
+            }
+        }, completion: nil)
+    }
 }

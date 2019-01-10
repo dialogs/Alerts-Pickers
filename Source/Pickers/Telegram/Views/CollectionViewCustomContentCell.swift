@@ -59,9 +59,8 @@ public class CollectionViewCustomContentCell<CustomContentView: UIView>: UIColle
         setupSelectionButton()
     }
     
-    public func updateSelectionIndex(isSelected: Bool, with index: Int) {
-        selectionElement.isSelected = isSelected
-        selectionElement.setTitle(String(index), for: .selected)
+    public func updateSelectionIndex(isSelected: Bool, with index: Int, animated: Bool) {
+        selectionElement.setSelected(isSelected, withTitle: isSelected ? String(index) : nil, animated: animated)
     }
     
     override public func layoutSubviews() {
