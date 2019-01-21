@@ -7,6 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		194B930321ECB02A002F0A0C /* ShortTapGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194B930221ECB02A002F0A0C /* ShortTapGestureRecognizer.swift */; };
+		194B931F21ED9DEB002F0A0C /* NSIndexSet+NSIndexPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194B930821ED9DEB002F0A0C /* NSIndexSet+NSIndexPath.swift */; };
+		194B932021ED9DEB002F0A0C /* BSImagePickerSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194B930A21ED9DEB002F0A0C /* BSImagePickerSettings.swift */; };
+		194B932121ED9DEB002F0A0C /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194B930C21ED9DEB002F0A0C /* PreviewViewController.swift */; };
+		194B932221ED9DEB002F0A0C /* BSImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194B930D21ED9DEB002F0A0C /* BSImagePickerViewController.swift */; };
+		194B932321ED9DEB002F0A0C /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194B930E21ED9DEB002F0A0C /* PhotosViewController.swift */; };
+		194B932421ED9DEB002F0A0C /* AlbumsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194B930F21ED9DEB002F0A0C /* AlbumsViewController.swift */; };
+		194B932521ED9DEB002F0A0C /* ZoomAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194B931021ED9DEB002F0A0C /* ZoomAnimator.swift */; };
+		194B932621ED9DEB002F0A0C /* AssetStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194B931221ED9DEB002F0A0C /* AssetStore.swift */; };
+		194B932721ED9DEB002F0A0C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194B931321ED9DEB002F0A0C /* Settings.swift */; };
+		194B932821ED9DEB002F0A0C /* AlbumTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194B931421ED9DEB002F0A0C /* AlbumTableViewDataSource.swift */; };
+		194B932921ED9DEB002F0A0C /* ComposedCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194B931521ED9DEB002F0A0C /* ComposedCollectionViewDataSource.swift */; };
+		194B932A21ED9DEB002F0A0C /* CameraCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194B931621ED9DEB002F0A0C /* CameraCollectionViewDataSource.swift */; };
+		194B932B21ED9DEB002F0A0C /* PhotoCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194B931721ED9DEB002F0A0C /* PhotoCollectionViewDataSource.swift */; };
+		194B932C21ED9DEB002F0A0C /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194B931921ED9DEB002F0A0C /* PhotoCell.swift */; };
+		194B932D21ED9DEB002F0A0C /* AlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194B931A21ED9DEB002F0A0C /* AlbumCell.swift */; };
+		194B932E21ED9DEB002F0A0C /* SelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194B931B21ED9DEB002F0A0C /* SelectionView.swift */; };
+		194B932F21ED9DEB002F0A0C /* AlbumTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194B931C21ED9DEB002F0A0C /* AlbumTitleView.swift */; };
+		194B933021ED9DEB002F0A0C /* CameraCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194B931D21ED9DEB002F0A0C /* CameraCell.swift */; };
+		194B933421ED9EDB002F0A0C /* BSImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194B933221ED9EDB002F0A0C /* BSImageView.swift */; };
+		194B933521ED9EDB002F0A0C /* ImageViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194B933321ED9EDB002F0A0C /* ImageViewLayout.swift */; };
+		194B933821ED9F92002F0A0C /* GridCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194B933721ED9F92002F0A0C /* GridCollectionViewLayout.swift */; };
+		194B933B21EDC204002F0A0C /* DLGMediaPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194B933A21EDC204002F0A0C /* DLGMediaPickerViewController.swift */; };
+		194B933D21EDC63D002F0A0C /* DLGPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194B933C21EDC63D002F0A0C /* DLGPhotosViewController.swift */; };
+		194B933F21EDE5D1002F0A0C /* DLGAlbumsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194B933E21EDE5D1002F0A0C /* DLGAlbumsViewController.swift */; };
+		194B934221EDEEC1002F0A0C /* DLGAlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194B934121EDEEC1002F0A0C /* DLGAlbumCell.swift */; };
+		194B934721EF4722002F0A0C /* DLGMediaPickerGalleryItemsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194B934621EF4722002F0A0C /* DLGMediaPickerGalleryItemsDataSource.swift */; };
 		D71CAE0E2188386000B22700 /* TelegramPickerConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71CAE0D2188386000B22700 /* TelegramPickerConfigurator.swift */; };
 		D725CCC5216CBE6D001A6974 /* TelegramPickerResourceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D725CCC4216CBE6D001A6974 /* TelegramPickerResourceProvider.swift */; };
 		D725CCC8216CD16F001A6974 /* ExampleTelegramPickerLocalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D725CCC7216CD16F001A6974 /* ExampleTelegramPickerLocalizer.swift */; };
@@ -128,6 +155,33 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		194B930221ECB02A002F0A0C /* ShortTapGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortTapGestureRecognizer.swift; sourceTree = "<group>"; };
+		194B930821ED9DEB002F0A0C /* NSIndexSet+NSIndexPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSIndexSet+NSIndexPath.swift"; sourceTree = "<group>"; };
+		194B930A21ED9DEB002F0A0C /* BSImagePickerSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSImagePickerSettings.swift; sourceTree = "<group>"; };
+		194B930C21ED9DEB002F0A0C /* PreviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
+		194B930D21ED9DEB002F0A0C /* BSImagePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSImagePickerViewController.swift; sourceTree = "<group>"; };
+		194B930E21ED9DEB002F0A0C /* PhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
+		194B930F21ED9DEB002F0A0C /* AlbumsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumsViewController.swift; sourceTree = "<group>"; };
+		194B931021ED9DEB002F0A0C /* ZoomAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoomAnimator.swift; sourceTree = "<group>"; };
+		194B931221ED9DEB002F0A0C /* AssetStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetStore.swift; sourceTree = "<group>"; };
+		194B931321ED9DEB002F0A0C /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		194B931421ED9DEB002F0A0C /* AlbumTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumTableViewDataSource.swift; sourceTree = "<group>"; };
+		194B931521ED9DEB002F0A0C /* ComposedCollectionViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposedCollectionViewDataSource.swift; sourceTree = "<group>"; };
+		194B931621ED9DEB002F0A0C /* CameraCollectionViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraCollectionViewDataSource.swift; sourceTree = "<group>"; };
+		194B931721ED9DEB002F0A0C /* PhotoCollectionViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewDataSource.swift; sourceTree = "<group>"; };
+		194B931921ED9DEB002F0A0C /* PhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
+		194B931A21ED9DEB002F0A0C /* AlbumCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumCell.swift; sourceTree = "<group>"; };
+		194B931B21ED9DEB002F0A0C /* SelectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectionView.swift; sourceTree = "<group>"; };
+		194B931C21ED9DEB002F0A0C /* AlbumTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumTitleView.swift; sourceTree = "<group>"; };
+		194B931D21ED9DEB002F0A0C /* CameraCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraCell.swift; sourceTree = "<group>"; };
+		194B933221ED9EDB002F0A0C /* BSImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSImageView.swift; sourceTree = "<group>"; };
+		194B933321ED9EDB002F0A0C /* ImageViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewLayout.swift; sourceTree = "<group>"; };
+		194B933721ED9F92002F0A0C /* GridCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridCollectionViewLayout.swift; sourceTree = "<group>"; };
+		194B933A21EDC204002F0A0C /* DLGMediaPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLGMediaPickerViewController.swift; sourceTree = "<group>"; };
+		194B933C21EDC63D002F0A0C /* DLGPhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLGPhotosViewController.swift; sourceTree = "<group>"; };
+		194B933E21EDE5D1002F0A0C /* DLGAlbumsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLGAlbumsViewController.swift; sourceTree = "<group>"; };
+		194B934121EDEEC1002F0A0C /* DLGAlbumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLGAlbumCell.swift; sourceTree = "<group>"; };
+		194B934621EF4722002F0A0C /* DLGMediaPickerGalleryItemsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLGMediaPickerGalleryItemsDataSource.swift; sourceTree = "<group>"; };
 		D71CAE0D2188386000B22700 /* TelegramPickerConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelegramPickerConfigurator.swift; sourceTree = "<group>"; };
 		D725CCC4216CBE6D001A6974 /* TelegramPickerResourceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelegramPickerResourceProvider.swift; sourceTree = "<group>"; };
 		D725CCC7216CD16F001A6974 /* ExampleTelegramPickerLocalizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTelegramPickerLocalizer.swift; sourceTree = "<group>"; };
@@ -261,6 +315,128 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		194B930421ECB180002F0A0C /* MediaPicker */ = {
+			isa = PBXGroup;
+			children = (
+				194B934521EF4637002F0A0C /* BSImagePickerLibrary */,
+				194B934021EDE63F002F0A0C /* Views */,
+				194B934421EF45F8002F0A0C /* Managers */,
+				194B933A21EDC204002F0A0C /* DLGMediaPickerViewController.swift */,
+				194B933E21EDE5D1002F0A0C /* DLGAlbumsViewController.swift */,
+				194B933C21EDC63D002F0A0C /* DLGPhotosViewController.swift */,
+			);
+			name = MediaPicker;
+			path = Source/Pickers/MediaPicker;
+			sourceTree = SOURCE_ROOT;
+		};
+		194B930521ED9DEB002F0A0C /* BSImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				194B930621ED9DEB002F0A0C /* Extension */,
+				194B930921ED9DEB002F0A0C /* Protocol */,
+				194B930B21ED9DEB002F0A0C /* Controller */,
+				194B931121ED9DEB002F0A0C /* Model */,
+				194B931821ED9DEB002F0A0C /* View */,
+			);
+			path = BSImagePicker;
+			sourceTree = "<group>";
+		};
+		194B930621ED9DEB002F0A0C /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				194B930821ED9DEB002F0A0C /* NSIndexSet+NSIndexPath.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		194B930921ED9DEB002F0A0C /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				194B930A21ED9DEB002F0A0C /* BSImagePickerSettings.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		194B930B21ED9DEB002F0A0C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				194B930C21ED9DEB002F0A0C /* PreviewViewController.swift */,
+				194B930D21ED9DEB002F0A0C /* BSImagePickerViewController.swift */,
+				194B930E21ED9DEB002F0A0C /* PhotosViewController.swift */,
+				194B930F21ED9DEB002F0A0C /* AlbumsViewController.swift */,
+				194B931021ED9DEB002F0A0C /* ZoomAnimator.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		194B931121ED9DEB002F0A0C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				194B931221ED9DEB002F0A0C /* AssetStore.swift */,
+				194B931321ED9DEB002F0A0C /* Settings.swift */,
+				194B931421ED9DEB002F0A0C /* AlbumTableViewDataSource.swift */,
+				194B931521ED9DEB002F0A0C /* ComposedCollectionViewDataSource.swift */,
+				194B931621ED9DEB002F0A0C /* CameraCollectionViewDataSource.swift */,
+				194B931721ED9DEB002F0A0C /* PhotoCollectionViewDataSource.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		194B931821ED9DEB002F0A0C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				194B931921ED9DEB002F0A0C /* PhotoCell.swift */,
+				194B931A21ED9DEB002F0A0C /* AlbumCell.swift */,
+				194B931B21ED9DEB002F0A0C /* SelectionView.swift */,
+				194B931C21ED9DEB002F0A0C /* AlbumTitleView.swift */,
+				194B931D21ED9DEB002F0A0C /* CameraCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		194B933121ED9EDB002F0A0C /* BSImageView */ = {
+			isa = PBXGroup;
+			children = (
+				194B933221ED9EDB002F0A0C /* BSImageView.swift */,
+				194B933321ED9EDB002F0A0C /* ImageViewLayout.swift */,
+			);
+			path = BSImageView;
+			sourceTree = "<group>";
+		};
+		194B933621ED9F92002F0A0C /* BSGridCollectionViewLayout */ = {
+			isa = PBXGroup;
+			children = (
+				194B933721ED9F92002F0A0C /* GridCollectionViewLayout.swift */,
+			);
+			path = BSGridCollectionViewLayout;
+			sourceTree = "<group>";
+		};
+		194B934021EDE63F002F0A0C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				194B934121EDEEC1002F0A0C /* DLGAlbumCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		194B934421EF45F8002F0A0C /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				194B934621EF4722002F0A0C /* DLGMediaPickerGalleryItemsDataSource.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		194B934521EF4637002F0A0C /* BSImagePickerLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				194B933621ED9F92002F0A0C /* BSGridCollectionViewLayout */,
+				194B933121ED9EDB002F0A0C /* BSImageView */,
+				194B930521ED9DEB002F0A0C /* BSImagePicker */,
+			);
+			path = BSImagePickerLibrary;
+			sourceTree = "<group>";
+		};
 		D77815DF21677CC700DA6613 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
@@ -338,6 +514,7 @@
 				F27C7E2421771E5300266414 /* UISlider.swift */,
 				F27C7E2521771E5300266414 /* CAShapeLayer.swift */,
 				F28F1C432179EFF7000F866F /* PickerCustomizableButton.swift */,
+				194B930221ECB02A002F0A0C /* ShortTapGestureRecognizer.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -432,6 +609,7 @@
 				FA4B0365201A118500D282E2 /* Location */,
 				FA4B0371201A810700D282E2 /* PhotoLibrary */,
 				FAAB5C92201BCC4800CCE04D /* PickerView */,
+				194B930421ECB180002F0A0C /* MediaPicker */,
 				FA4B0370201A805000D282E2 /* Telegram */,
 				FAAB5C8F201BCBA100CCE04D /* TextFields */,
 			);
@@ -777,27 +955,34 @@
 			files = (
 				D77815DD2166A20500DA6613 /* CLPlacemark+Extensions.swift in Sources */,
 				FAAB5CA4201DEE0B00CCE04D /* UIApplication+Extensions.swift in Sources */,
+				194B932E21ED9DEB002F0A0C /* SelectionView.swift in Sources */,
 				F27C7E4E21771E5300266414 /* GalleryItemsDelegate.swift in Sources */,
 				F27C7E3821771E5300266414 /* GallerySwipeToDismissTransition.swift in Sources */,
 				F27C7E3521771E5300266414 /* BlurView.swift in Sources */,
 				FA3BB2C72008B46900E06F8F /* AppDelegate.swift in Sources */,
+				194B934221EDEEC1002F0A0C /* DLGAlbumCell.swift in Sources */,
 				F27C7E5521771E5300266414 /* VideoViewController.swift in Sources */,
 				FA3BB2C12008B46900E06F8F /* ImagePickerViewController.swift in Sources */,
 				D7D51A552167F205006455B6 /* AVCaptureSession+Extensions.swift in Sources */,
+				194B933021ED9DEB002F0A0C /* CameraCell.swift in Sources */,
 				FA3BB2BC2008B46900E06F8F /* Common+Extensions.swift in Sources */,
 				D725CCC8216CD16F001A6974 /* ExampleTelegramPickerLocalizer.swift in Sources */,
 				F27C7E4221771E5300266414 /* UIBezierPath.swift in Sources */,
 				F27C7E3E21771E5300266414 /* CALayer.swift in Sources */,
+				194B931F21ED9DEB002F0A0C /* NSIndexSet+NSIndexPath.swift in Sources */,
+				194B932421ED9DEB002F0A0C /* AlbumsViewController.swift in Sources */,
 				F27C7E4421771E5300266414 /* UIButton.swift in Sources */,
 				FABFAA64200C1D4600961895 /* GradientSlider.swift in Sources */,
 				F27C7E5421771E5300266414 /* Slider.swift in Sources */,
 				FA7CE6D920149F9B00FB3E72 /* ContactsPickerViewController.swift in Sources */,
 				F27C7E5121771E5300266414 /* ItemBaseController.swift in Sources */,
 				F27C7E4C21771E5300266414 /* UISlider.swift in Sources */,
+				194B933F21EDE5D1002F0A0C /* DLGAlbumsViewController.swift in Sources */,
 				F27C7DFD2175ECF100266414 /* CollectionViewVideoCell.swift in Sources */,
 				F27C7E3921771E5300266414 /* VideoView.swift in Sources */,
 				FA005E9820166D51001EA8C6 /* Contact.swift in Sources */,
 				FA4B036B201A119C00D282E2 /* LocationPickerViewController.swift in Sources */,
+				194B933421ED9EDB002F0A0C /* BSImageView.swift in Sources */,
 				F27C7E4F21771E5300266414 /* GalleryItem.swift in Sources */,
 				F27C7E5221771E5300266414 /* LayoutEnums.swift in Sources */,
 				F27C7E4A21771E5300266414 /* UIApplication.swift in Sources */,
@@ -809,11 +994,14 @@
 				FABFAA6A200D470800961895 /* TextViewController.swift in Sources */,
 				FA3BB2B82008B46900E06F8F /* UIColor+Extensions.swift in Sources */,
 				FA3BB2B72008B46800E06F8F /* UITextView+Extensions.swift in Sources */,
+				194B932121ED9DEB002F0A0C /* PreviewViewController.swift in Sources */,
 				FAAB5C85201BC26900CCE04D /* LocaleStore.swift in Sources */,
+				194B932F21ED9DEB002F0A0C /* AlbumTitleView.swift in Sources */,
 				F27C7E5321771E5300266414 /* GalleryViewController.swift in Sources */,
 				FAAB5C9D201BD1F700CCE04D /* TypeOneCell.swift in Sources */,
 				D7C5365F21807D2000C7B69A /* PHFetchResult+Extensions.swift in Sources */,
 				F27C7E5621771E5300266414 /* GalleryPagingDataSource.swift in Sources */,
+				194B932B21ED9DEB002F0A0C /* PhotoCollectionViewDataSource.swift in Sources */,
 				FA4B0377201A820200D282E2 /* PhotoLayout.swift in Sources */,
 				D7636E48216FB7FB0063BCDB /* UIView+Extensions.swift in Sources */,
 				FA4B037B201A85FE00D282E2 /* PhotoLibraryPickerViewController.swift in Sources */,
@@ -825,6 +1013,7 @@
 				F28F1C442179EFF7000F866F /* PickerCustomizableButton.swift in Sources */,
 				FABFAA68200C963F00961895 /* ColorPickerViewController.swift in Sources */,
 				F27C7E4121771E5300266414 /* CGSize.swift in Sources */,
+				194B932521ED9DEB002F0A0C /* ZoomAnimator.swift in Sources */,
 				D7361716217F35BC0015D824 /* TelegramPickerGalleryItemsDataSource.swift in Sources */,
 				FA3BB2B12008B46800E06F8F /* TextField.swift in Sources */,
 				FA6E98C72017ABE500008C0C /* VegaScrollFlowLayout.swift in Sources */,
@@ -833,9 +1022,13 @@
 				FA3BB2B92008B46900E06F8F /* UIImage+Extensions.swift in Sources */,
 				FA3BB2C32008B46900E06F8F /* LocalePickerViewController.swift in Sources */,
 				FA3BB2C42008B46900E06F8F /* TwoTextFieldsViewController.swift in Sources */,
+				194B933B21EDC204002F0A0C /* DLGMediaPickerViewController.swift in Sources */,
 				FA3BB2B02008B46800E06F8F /* SegmentedControl.swift in Sources */,
 				F27C7E5021771E5300266414 /* GalleryDisplacedViewsDataSource.swift in Sources */,
 				FA25CAA52018677A00D1CB87 /* LikeButtonCell.swift in Sources */,
+				194B932921ED9DEB002F0A0C /* ComposedCollectionViewDataSource.swift in Sources */,
+				194B932221ED9DEB002F0A0C /* BSImagePickerViewController.swift in Sources */,
+				194B933821ED9F92002F0A0C /* GridCollectionViewLayout.swift in Sources */,
 				FA4B036A201A119C00D282E2 /* SearchHistoryManager.swift in Sources */,
 				FA3BB2B32008B46800E06F8F /* UISegmentedControl+Extensions.swift in Sources */,
 				D7C53665218094F600C7B69A /* AssetsCollection+ChangesObserver.swift in Sources */,
@@ -844,7 +1037,10 @@
 				F27C7E3321771E5300266414 /* ItemControllerDelegate.swift in Sources */,
 				D7950F51217216CC005822F1 /* Bundle+Extensions.swift in Sources */,
 				FAAB5C89201BCA6700CCE04D /* CurrencyCell.swift in Sources */,
+				194B932721ED9DEB002F0A0C /* Settings.swift in Sources */,
+				194B933D21EDC63D002F0A0C /* DLGPhotosViewController.swift in Sources */,
 				FA3BB2C52008B46900E06F8F /* OneTextFieldViewController.swift in Sources */,
+				194B930321ECB02A002F0A0C /* ShortTapGestureRecognizer.swift in Sources */,
 				FA3BB2BE2008B46900E06F8F /* UITextField+Extensions.swift in Sources */,
 				F28F1C422179EE04000F866F /* PickerStyle.swift in Sources */,
 				F27C7E3421771E5300266414 /* UtilityFunctions.swift in Sources */,
@@ -857,6 +1053,8 @@
 				F27C7E5721771E5300266414 /* ImageFadeInHandler.swift in Sources */,
 				FA3BB2B52008B46800E06F8F /* Date+Extension.swift in Sources */,
 				FA3BB2C02008B46900E06F8F /* DatePickerViewController.swift in Sources */,
+				194B932D21ED9DEB002F0A0C /* AlbumCell.swift in Sources */,
+				194B932821ED9DEB002F0A0C /* AlbumTableViewDataSource.swift in Sources */,
 				FA4B036C201A119C00D282E2 /* Location.swift in Sources */,
 				FA3BB2AF2008B46800E06F8F /* Label.swift in Sources */,
 				FA005E9620162BB5001EA8C6 /* Assets.swift in Sources */,
@@ -869,10 +1067,16 @@
 				FAAB5CA0201BD4B000CCE04D /* ItemWithImage.swift in Sources */,
 				D77815E321677D4700DA6613 /* Camera.swift in Sources */,
 				F27C7E4721771E5300266414 /* AVPlayer.swift in Sources */,
+				194B934721EF4722002F0A0C /* DLGMediaPickerGalleryItemsDataSource.swift in Sources */,
 				F27C7E4021771E5300266414 /* UIColor.swift in Sources */,
+				194B933521ED9EDB002F0A0C /* ImageViewLayout.swift in Sources */,
+				194B932321ED9DEB002F0A0C /* PhotosViewController.swift in Sources */,
 				FA4B0375201A817200D282E2 /* CollectionViewPhotoCell.swift in Sources */,
+				194B932021ED9DEB002F0A0C /* BSImagePickerSettings.swift in Sources */,
 				F27C7E3721771E5300266414 /* VideoScrubber.swift in Sources */,
+				194B932A21ED9DEB002F0A0C /* CameraCollectionViewDataSource.swift in Sources */,
 				FA7CE67820125F0A00FB3E72 /* TelegramPickerViewController.swift in Sources */,
+				194B932C21ED9DEB002F0A0C /* PhotoCell.swift in Sources */,
 				FA4B036D201A119C00D282E2 /* LocationSearchResultsViewController.swift in Sources */,
 				D7B813B621806924000CB256 /* AssetsCollection.swift in Sources */,
 				FAAB5CA6201DEE9C00CCE04D /* UIViewController+Extensions.swift in Sources */,
@@ -886,6 +1090,7 @@
 				FA4B036F201A652900D282E2 /* Address.swift in Sources */,
 				FA3BB2BD2008B46900E06F8F /* Locale+Extensions.swift in Sources */,
 				D79100182195AF56003ADB1A /* AlertIconCollection.swift in Sources */,
+				194B932621ED9DEB002F0A0C /* AssetStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

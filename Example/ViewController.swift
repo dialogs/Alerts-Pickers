@@ -392,12 +392,13 @@ class ViewController: UIViewController {
             let alert = UIAlertController(style: .actionSheet)
             alert.view.tintColor = UIColor.purple
             
-            let picker = TelegramPickerViewController(selection: { [weak alert] result in
+            let picker = TelegramPickerViewController(selection: { [weak alert, weak self] result in
                 switch result {
                 case .media(let assets):
                     Log(assets)
                 case .photoLibrary:
                     Log("photo library")
+                    self?.showMediaPicker()
                 case .contact(let contact):
                     Log(contact)
                 case .location(let location):
@@ -423,6 +424,22 @@ class ViewController: UIViewController {
             alert.addAction(title: "Cancel", style: .cancel)
             alert.show()
         }
+    }
+    
+    private func showMediaPicker() {
+        let vc = DLGMediaPickerViewController()
+        DLGMediaPickerViewController.presentImagePickerController(in: self,
+                                                                  imagePicker: vc,
+                                                                  animated: true,
+                                                                  select: { (asset: PHAsset) -> Void in
+                                                                    print("Selected: \(asset)")
+        }, deselect: { (asset: PHAsset) -> Void in
+            Log("Deselected: \(asset)")
+        }, cancel: { (assets: [PHAsset]) -> Void in
+            Log("Cancel: \(assets)")
+        }, finish: { (assets: [PHAsset]) -> Void in
+            Log("Finish: \(assets)")
+        }, completion: nil)
     }
 }
 
