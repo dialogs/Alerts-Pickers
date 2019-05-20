@@ -142,6 +142,7 @@ final public class TelegramPickerViewController: UIViewController {
         case normal
         case bigPhotoPreviews
         case documentType
+        case disablePhotoGalleryAccess
     }
     
     struct UI {
@@ -200,7 +201,7 @@ final public class TelegramPickerViewController: UIViewController {
         switch mode {
         case .normal: return UI.maxHeight / UI.multiplier + UI.insets.top + UI.insets.bottom
         case .bigPhotoPreviews: return UI.maxHeight + UI.insets.top + UI.insets.bottom
-        case .documentType: return 0
+        case .documentType, .disablePhotoGalleryAccess: return 0
         }
     }
     
@@ -326,7 +327,7 @@ final public class TelegramPickerViewController: UIViewController {
         case .normal:
             let value: CGFloat = UI.maxHeight / UI.multiplier
             return CGSize(width: value, height: value)
-        case .documentType:
+        case .documentType, .disablePhotoGalleryAccess:
             return .zero
         }
     }
@@ -475,6 +476,7 @@ final public class TelegramPickerViewController: UIViewController {
             
         case .denied, .restricted:
             /// User has denied the current app to access the camera.
+            self.photoLayout.mode = .hidingFirstItem
             let alert = localizer.localizedAlert(failure: .noAccessToCamera)
             dismiss(animated: false) {
                 alert?.show()
@@ -499,6 +501,7 @@ final public class TelegramPickerViewController: UIViewController {
             
         case .denied, .restricted:
             /// User has denied the current app to access the contacts.
+            self.mode = .disablePhotoGalleryAccess
             dismiss(animated: false) {
                 if let alert = self.localizer.localizedAlert(failure: .noAccessToPhoto) {
                     alert.show()
@@ -687,7 +690,7 @@ final public class TelegramPickerViewController: UIViewController {
         switchSelection(streamItem: item)
         
         let becomeSelected = isSelected(streamItem: item)
-
+        
         tappedButton.setSelected(becomeSelected, withTitle: becomeSelected ? String(self.selectedAssets.count) : nil, animated: true)
         
         updateVisibleSelectionIndexes()
@@ -743,11 +746,7 @@ final public class TelegramPickerViewController: UIViewController {
         
         collectionView.performBatchUpdates({
             switch mode {
-            case .documentType:
-                tableView.reloadData()
-            case .bigPhotoPreviews:
-                tableView.reloadData()
-            case .normal:
+            case .documentType, .bigPhotoPreviews, .normal, .disablePhotoGalleryAccess:
                 tableView.reloadData()
             }
             self.layout.mode = (newMode == .normal) ? .normal : .hidingFirstItem
@@ -766,6 +765,7 @@ final public class TelegramPickerViewController: UIViewController {
         case .normal: return [.photoOrVideo, .file, .location, .contact]
         case .bigPhotoPreviews: return [.sendPhotos, .photoAsFile]
         case .documentType: return [.documentAsFile, .photoAsFile]
+        case .disablePhotoGalleryAccess: return [.file, .location, .contact]
         }
     }
     
@@ -793,7 +793,7 @@ final public class TelegramPickerViewController: UIViewController {
                     selection(TelegramSelectionType.photosAsDocuments(assets))
                 }
             }
-
+            
         case .documentAsFile:
             let selection = self.selection
             alertController?.dismiss(animated: true) {
@@ -1041,7 +1041,7 @@ extension TelegramPickerViewController: UICollectionViewDataSource {
                     selection(item)
                 }
             }
-
+            
         default:
             alertController?.dismiss(animated: true, completion: {
                 selection(item)
@@ -1067,6 +1067,7 @@ extension TelegramPickerViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.action(for: self.buttons[indexPath.row])
     }
+    
 }
 
 // MARK: - TableViewDataSource
@@ -1136,7 +1137,7 @@ extension TelegramPickerViewController: GalleryItemsDelegate {
         
         let assets = self.selectedAssets
         let selection = self.selection
-
+        
         if configurator.needCallSelectionForAssetsBeforeCompletion() {
             selection(TelegramSelectionType.media(assets))
             self.parent?.presentingViewController?.dismiss(animated: true, completion: nil)
