@@ -21,6 +21,7 @@ final class DLGAlbumsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.allowsSelection = true
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
         tableView.register(DLGAlbumCell.self, forCellReuseIdentifier: DLGAlbumCell.cellIdentifier)
@@ -30,5 +31,4 @@ final class DLGAlbumsViewController: UITableViewController {
         super.viewWillAppear(animated)
         tableView.reloadData()
     }
-    
 }

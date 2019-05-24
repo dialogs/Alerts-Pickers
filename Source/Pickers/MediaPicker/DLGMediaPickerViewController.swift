@@ -8,7 +8,7 @@
 import UIKit
 import Photos
 
-class DLGMediaPickerViewController: BSImagePickerViewController {
+public class DLGMediaPickerViewController: BSImagePickerViewController {
     
     var selectionClosure: ((_ asset: PHAsset) -> Void)?
     var deselectionClosure: ((_ asset: PHAsset) -> Void)?
@@ -16,8 +16,18 @@ class DLGMediaPickerViewController: BSImagePickerViewController {
     var finishClosure: ((_ assets: [PHAsset]) -> Void)?
     var selectLimitReachedClosure: ((_ selectionLimit: Int) -> Void)?
     
+    public var pickerSetting: BSImagePickerSettings = {
+        var setting = Settings()
+        setting.selectionFillColor = PickerStyle.shared.selectionButtonTintColor
+        return setting
+    }()
+    
     @objc private lazy var dlgPhotosViewController: DLGPhotosViewController = makePhotoViewController()
-    private lazy var toolItems = [cancelButton, UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil), doneButton]
+    private lazy var toolItems: [UIBarButtonItem] = {
+        let items = [cancelButton, UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil), doneButton]
+        items.forEach({ $0.tintColor = PickerStyle.shared.selectionButtonTintColor })
+        return items
+        }()
     private lazy var albumsDataSource = AlbumTableViewDataSource(fetchResults: fetchResults)
     private lazy var albumsViewController: DLGAlbumsViewController = {
         let vc = DLGAlbumsViewController()
@@ -47,7 +57,7 @@ class DLGMediaPickerViewController: BSImagePickerViewController {
         
     }
     
-    static func presentImagePickerController(in viewController: UIViewController,
+    static public func presentImagePickerController(in viewController: UIViewController,
                                              imagePicker: DLGMediaPickerViewController,
                                              animated: Bool,
                                              select: ((_ asset: PHAsset) -> Void)?,
@@ -80,7 +90,7 @@ class DLGMediaPickerViewController: BSImagePickerViewController {
         let assetStore = AssetStore(assets: selections)
         let vc = DLGPhotosViewController(fetchResults: self.fetchResults,
                                          assetStore: assetStore,
-                                         settings: self.settings)
+                                         settings: self.pickerSetting)
         vc.toolbarItems = toolItems
         vc.doneBarButton = doneButton
         vc.cancelBarButton = cancelButton
@@ -105,19 +115,27 @@ class DLGMediaPickerViewController: BSImagePickerViewController {
     // MARK: Button actions
     @objc func cancelButtonPressed(_ sender: UIBarButtonItem?) {
         dismiss(animated: true, completion: nil)
+        UIApplication.shared.statusBarStyle = .lightContent
         cancelClosure?(dlgPhotosViewController.assetStore.assets)
     }
     
     @objc func doneButtonPressed(_ sender: UIBarButtonItem?) {
         dismiss(animated: true, completion: nil)
+        UIApplication.shared.statusBarStyle = .lightContent
         finishClosure?(dlgPhotosViewController.assetStore.assets)
+    }
+    
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationBar.tintColor = PickerStyle.shared.selectionButtonTintColor
+        UIApplication.shared.statusBarStyle = .default
     }
     
 }
 
 extension DLGMediaPickerViewController: UITableViewDelegate {
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Update photos data source
         let album = albumsDataSource.fetchResults[indexPath.section][indexPath.row]
         dlgPhotosViewController.initializePhotosDataSource(album)
