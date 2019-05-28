@@ -279,7 +279,7 @@ final public class TelegramPickerViewController: UIViewController {
         $0.register(CollectionViewPhotoCell.self, forCellWithReuseIdentifier: CellId.photo.rawValue)
         $0.register(CollectionViewVideoCell.self, forCellWithReuseIdentifier: CellId.video.rawValue)
         $0.register(CollectionViewCameraCell.self, forCellWithReuseIdentifier: CellId.camera.rawValue)
-        $0.register(CollectionViewNoAccessCell.self, forCellWithReuseIdentifier: CellId.noAccess.rawValue)
+        $0.register(CollectionViewNoCameraAccessCell.self, forCellWithReuseIdentifier: CellId.noAccess.rawValue)
         
         return $0
         }(UICollectionView(frame: .zero, collectionViewLayout: layout))
@@ -408,9 +408,7 @@ final public class TelegramPickerViewController: UIViewController {
     func resetItems() {
         
         var newItems: [StreamItem] = []
-        if shouldShowPhotosNoAccess {
-            newItems.insert(.noAccessToPhotos, at: 0)
-        } else {
+        if !shouldShowPhotosNoAccess {
             newItems = createItems(assets: assetsCollection.assets)
         }
         
@@ -462,9 +460,7 @@ final public class TelegramPickerViewController: UIViewController {
     
     func resetItems(assets: [PHAsset]) {
         var newItems: [StreamItem] = []
-        if shouldShowPhotosNoAccess {
-            newItems = [.noAccessToPhotos]
-        } else {
+        if !shouldShowPhotosNoAccess {
             newItems = createItems(assets: assets)
         }
         
@@ -556,6 +552,10 @@ final public class TelegramPickerViewController: UIViewController {
             
         case .denied, .restricted:
             /// User has denied the current app to access the contacts.
+            let alert = localizer.localizedAlert(failure: .noAccessToPhoto)
+            dismiss(animated: false) {
+                alert?.show()
+            }
             break
         }
     }
@@ -658,7 +658,7 @@ final public class TelegramPickerViewController: UIViewController {
             selectionItem = .media([asset])
             
         case .noAccessToCamera:
-            break
+            updateCamera()
             
         case .noAccessToPhotos:
             break
@@ -684,7 +684,7 @@ final public class TelegramPickerViewController: UIViewController {
             self.openPreview(with: asset, at: indexPath)
         
         case .noAccessToCamera:
-            break
+            updateCamera()
             
         case .noAccessToPhotos:
             break
@@ -844,7 +844,12 @@ final public class TelegramPickerViewController: UIViewController {
         case .photoOrVideo:
             let selection = self.selection
             alertController?.dismiss(animated: true) {
-                selection(.photoLibrary)
+                if self.shouldShowPhotosNoAccess {
+                    let alert = self.localizer.localizedAlert(failure: .noAccessToPhoto)
+                    alert?.show()
+                } else {
+                    selection(.photoLibrary)
+                }
             }
             
         case .photoAsFile:
@@ -953,19 +958,7 @@ extension TelegramPickerViewController: UICollectionViewDataSource {
     }
     
     private func dequeue(_ collectionView: UICollectionView, noAccess: NoAccessType, cellAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let cell: CollectionViewNoAccessCell = dequeue(collectionView, id: .noAccess, indexPath: indexPath)
-        
-        switch noAccess {
-        case .noCameraAccess:
-            cell.textLabel.text = self.localizer.localized(item: .noCameraAccessCell)
-        case .noPhotoAccess:
-            cell.textLabel.text = self.localizer.localized(item: .noPhotosAccessCell)
-        }
-        
-        cell.textLabel.textColor = self.view.tintColor
-        cell.borderColor = self.view.tintColor
-        
+        let cell: CollectionViewNoCameraAccessCell = dequeue(collectionView, id: .noAccess, indexPath: indexPath)
         return cell
     }
     
