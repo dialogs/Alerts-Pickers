@@ -34,22 +34,27 @@
 		194B933F21EDE5D1002F0A0C /* DLGAlbumsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194B933E21EDE5D1002F0A0C /* DLGAlbumsViewController.swift */; };
 		194B934221EDEEC1002F0A0C /* DLGAlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194B934121EDEEC1002F0A0C /* DLGAlbumCell.swift */; };
 		194B934721EF4722002F0A0C /* DLGMediaPickerGalleryItemsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194B934621EF4722002F0A0C /* DLGMediaPickerGalleryItemsDataSource.swift */; };
-		D71CAE0E2188386000B22700 /* TelegramPickerConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71CAE0D2188386000B22700 /* TelegramPickerConfigurator.swift */; };
-		D725CCC5216CBE6D001A6974 /* TelegramPickerResourceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D725CCC4216CBE6D001A6974 /* TelegramPickerResourceProvider.swift */; };
 		D725CCC8216CD16F001A6974 /* ExampleTelegramPickerLocalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D725CCC7216CD16F001A6974 /* ExampleTelegramPickerLocalizer.swift */; };
-		D7361716217F35BC0015D824 /* TelegramPickerGalleryItemsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7361715217F35BC0015D824 /* TelegramPickerGalleryItemsDataSource.swift */; };
 		D7636E48216FB7FB0063BCDB /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7636E47216FB7FB0063BCDB /* UIView+Extensions.swift */; };
 		D77815DD2166A20500DA6613 /* CLPlacemark+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77815DC2166A20500DA6613 /* CLPlacemark+Extensions.swift */; };
-		D77815E321677D4700DA6613 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77815E221677D4700DA6613 /* Camera.swift */; };
-		D77815E52167A1EB00DA6613 /* CollectionViewCustomContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77815E42167A1EB00DA6613 /* CollectionViewCustomContentCell.swift */; };
-		D77815E82167A39F00DA6613 /* CollectionViewCameraCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77815E72167A39F00DA6613 /* CollectionViewCameraCell.swift */; };
 		D79100182195AF56003ADB1A /* AlertIconCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79100172195AF56003ADB1A /* AlertIconCollection.swift */; };
 		D7950F51217216CC005822F1 /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7950F50217216CC005822F1 /* Bundle+Extensions.swift */; };
-		D7B813B621806924000CB256 /* AssetsCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B813B521806924000CB256 /* AssetsCollection.swift */; };
 		D7C5365F21807D2000C7B69A /* PHFetchResult+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C5365E21807D2000C7B69A /* PHFetchResult+Extensions.swift */; };
-		D7C53665218094F600C7B69A /* AssetsCollection+ChangesObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C53664218094F600C7B69A /* AssetsCollection+ChangesObserver.swift */; };
 		D7D51A552167F205006455B6 /* AVCaptureSession+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D51A542167F205006455B6 /* AVCaptureSession+Extensions.swift */; };
-		F27C7DFD2175ECF100266414 /* CollectionViewVideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27C7DFC2175ECF100266414 /* CollectionViewVideoCell.swift */; };
+		F2170F0022CCBBF900EA5193 /* TelegramPickerGalleryItemsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2170EEF22CCBBF800EA5193 /* TelegramPickerGalleryItemsDataSource.swift */; };
+		F2170F0122CCBBF900EA5193 /* AssetsCollection+ChangesObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2170EF122CCBBF800EA5193 /* AssetsCollection+ChangesObserver.swift */; };
+		F2170F0222CCBBF900EA5193 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2170EF222CCBBF800EA5193 /* Camera.swift */; };
+		F2170F0322CCBBF900EA5193 /* AssetsCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2170EF322CCBBF800EA5193 /* AssetsCollection.swift */; };
+		F2170F0422CCBBF900EA5193 /* TelegramPickerConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2170EF422CCBBF800EA5193 /* TelegramPickerConfigurator.swift */; };
+		F2170F0522CCBBF900EA5193 /* PhotoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2170EF622CCBBF800EA5193 /* PhotoLayout.swift */; };
+		F2170F0622CCBBF900EA5193 /* TelegramPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2170EF722CCBBF800EA5193 /* TelegramPickerViewController.swift */; };
+		F2170F0722CCBBF900EA5193 /* CollectionViewVideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2170EF922CCBBF800EA5193 /* CollectionViewVideoCell.swift */; };
+		F2170F0822CCBBF900EA5193 /* CollectionViewCameraCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2170EFA22CCBBF800EA5193 /* CollectionViewCameraCell.swift */; };
+		F2170F0922CCBBF900EA5193 /* CollectionViewPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2170EFB22CCBBF800EA5193 /* CollectionViewPhotoCell.swift */; };
+		F2170F0A22CCBBF900EA5193 /* CollectionViewCustomContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2170EFC22CCBBF800EA5193 /* CollectionViewCustomContentCell.swift */; };
+		F2170F0B22CCBBF900EA5193 /* CollectionViewNoAccessCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2170EFD22CCBBF800EA5193 /* CollectionViewNoAccessCell.swift */; };
+		F2170F0C22CCBBF900EA5193 /* LikeButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2170EFE22CCBBF800EA5193 /* LikeButtonCell.swift */; };
+		F2170F0D22CCBBF900EA5193 /* TelegramPickerResourceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2170EFF22CCBBF800EA5193 /* TelegramPickerResourceProvider.swift */; };
 		F27C7E3221771E5300266414 /* GalleryConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27C7E0821771E5300266414 /* GalleryConfiguration.swift */; };
 		F27C7E3321771E5300266414 /* ItemControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27C7E0921771E5300266414 /* ItemControllerDelegate.swift */; };
 		F27C7E3421771E5300266414 /* UtilityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27C7E0A21771E5300266414 /* UtilityFunctions.swift */; };
@@ -94,7 +99,6 @@
 		FA005E942015E490001EA8C6 /* UISearchBar+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA005E932015E490001EA8C6 /* UISearchBar+Extensions.swift */; };
 		FA005E9620162BB5001EA8C6 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA005E9520162BB5001EA8C6 /* Assets.swift */; };
 		FA005E9820166D51001EA8C6 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA005E9720166D51001EA8C6 /* Contact.swift */; };
-		FA25CAA52018677A00D1CB87 /* LikeButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA25CAA42018677A00D1CB87 /* LikeButtonCell.swift */; };
 		FA3BB2892008B45600E06F8F /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = FA3BB2882008B45600E06F8F /* README.md */; };
 		FA3BB2AC2008B46800E06F8F /* picker_assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA3BB28B2008B46500E06F8F /* picker_assets.xcassets */; };
 		FA3BB2AD2008B46800E06F8F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA3BB28C2008B46500E06F8F /* LaunchScreen.storyboard */; };
@@ -129,13 +133,10 @@
 		FA4B036C201A119C00D282E2 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4B0368201A119C00D282E2 /* Location.swift */; };
 		FA4B036D201A119C00D282E2 /* LocationSearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4B0369201A119C00D282E2 /* LocationSearchResultsViewController.swift */; };
 		FA4B036F201A652900D282E2 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4B036E201A652900D282E2 /* Address.swift */; };
-		FA4B0375201A817200D282E2 /* CollectionViewPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4B0374201A817200D282E2 /* CollectionViewPhotoCell.swift */; };
-		FA4B0377201A820200D282E2 /* PhotoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4B0376201A820200D282E2 /* PhotoLayout.swift */; };
 		FA4B0379201A82FC00D282E2 /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4B0378201A82FC00D282E2 /* ContactCell.swift */; };
 		FA4B037B201A85FE00D282E2 /* PhotoLibraryPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4B037A201A85FE00D282E2 /* PhotoLibraryPickerViewController.swift */; };
 		FA6E98C42017348800008C0C /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6E98C32017348800008C0C /* Button.swift */; };
 		FA6E98C72017ABE500008C0C /* VegaScrollFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6E98C62017ABE500008C0C /* VegaScrollFlowLayout.swift */; };
-		FA7CE67820125F0A00FB3E72 /* TelegramPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7CE67720125F0A00FB3E72 /* TelegramPickerViewController.swift */; };
 		FA7CE6D920149F9B00FB3E72 /* ContactsPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7CE6D820149F9B00FB3E72 /* ContactsPickerViewController.swift */; };
 		FA7CE6DB2014AC4C00FB3E72 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7CE6DA2014AC4C00FB3E72 /* UIImageView+Extensions.swift */; };
 		FAAB5C83201BC16500CCE04D /* LocaleInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAB5C82201BC16500CCE04D /* LocaleInfo.swift */; };
@@ -182,22 +183,27 @@
 		194B933E21EDE5D1002F0A0C /* DLGAlbumsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLGAlbumsViewController.swift; sourceTree = "<group>"; };
 		194B934121EDEEC1002F0A0C /* DLGAlbumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLGAlbumCell.swift; sourceTree = "<group>"; };
 		194B934621EF4722002F0A0C /* DLGMediaPickerGalleryItemsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLGMediaPickerGalleryItemsDataSource.swift; sourceTree = "<group>"; };
-		D71CAE0D2188386000B22700 /* TelegramPickerConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelegramPickerConfigurator.swift; sourceTree = "<group>"; };
-		D725CCC4216CBE6D001A6974 /* TelegramPickerResourceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelegramPickerResourceProvider.swift; sourceTree = "<group>"; };
 		D725CCC7216CD16F001A6974 /* ExampleTelegramPickerLocalizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTelegramPickerLocalizer.swift; sourceTree = "<group>"; };
-		D7361715217F35BC0015D824 /* TelegramPickerGalleryItemsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelegramPickerGalleryItemsDataSource.swift; sourceTree = "<group>"; };
 		D7636E47216FB7FB0063BCDB /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		D77815DC2166A20500DA6613 /* CLPlacemark+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLPlacemark+Extensions.swift"; sourceTree = "<group>"; };
-		D77815E221677D4700DA6613 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
-		D77815E42167A1EB00DA6613 /* CollectionViewCustomContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCustomContentCell.swift; sourceTree = "<group>"; };
-		D77815E72167A39F00DA6613 /* CollectionViewCameraCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCameraCell.swift; sourceTree = "<group>"; };
 		D79100172195AF56003ADB1A /* AlertIconCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertIconCollection.swift; sourceTree = "<group>"; };
 		D7950F50217216CC005822F1 /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
-		D7B813B521806924000CB256 /* AssetsCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsCollection.swift; sourceTree = "<group>"; };
 		D7C5365E21807D2000C7B69A /* PHFetchResult+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PHFetchResult+Extensions.swift"; sourceTree = "<group>"; };
-		D7C53664218094F600C7B69A /* AssetsCollection+ChangesObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AssetsCollection+ChangesObserver.swift"; sourceTree = "<group>"; };
 		D7D51A542167F205006455B6 /* AVCaptureSession+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVCaptureSession+Extensions.swift"; sourceTree = "<group>"; };
-		F27C7DFC2175ECF100266414 /* CollectionViewVideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewVideoCell.swift; sourceTree = "<group>"; };
+		F2170EEF22CCBBF800EA5193 /* TelegramPickerGalleryItemsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TelegramPickerGalleryItemsDataSource.swift; sourceTree = "<group>"; };
+		F2170EF122CCBBF800EA5193 /* AssetsCollection+ChangesObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AssetsCollection+ChangesObserver.swift"; sourceTree = "<group>"; };
+		F2170EF222CCBBF800EA5193 /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
+		F2170EF322CCBBF800EA5193 /* AssetsCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetsCollection.swift; sourceTree = "<group>"; };
+		F2170EF422CCBBF800EA5193 /* TelegramPickerConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TelegramPickerConfigurator.swift; sourceTree = "<group>"; };
+		F2170EF622CCBBF800EA5193 /* PhotoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoLayout.swift; sourceTree = "<group>"; };
+		F2170EF722CCBBF800EA5193 /* TelegramPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TelegramPickerViewController.swift; sourceTree = "<group>"; };
+		F2170EF922CCBBF800EA5193 /* CollectionViewVideoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewVideoCell.swift; sourceTree = "<group>"; };
+		F2170EFA22CCBBF800EA5193 /* CollectionViewCameraCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCameraCell.swift; sourceTree = "<group>"; };
+		F2170EFB22CCBBF800EA5193 /* CollectionViewPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewPhotoCell.swift; sourceTree = "<group>"; };
+		F2170EFC22CCBBF800EA5193 /* CollectionViewCustomContentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCustomContentCell.swift; sourceTree = "<group>"; };
+		F2170EFD22CCBBF800EA5193 /* CollectionViewNoAccessCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewNoAccessCell.swift; sourceTree = "<group>"; };
+		F2170EFE22CCBBF800EA5193 /* LikeButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeButtonCell.swift; sourceTree = "<group>"; };
+		F2170EFF22CCBBF800EA5193 /* TelegramPickerResourceProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TelegramPickerResourceProvider.swift; sourceTree = "<group>"; };
 		F27C7E0821771E5300266414 /* GalleryConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryConfiguration.swift; sourceTree = "<group>"; };
 		F27C7E0921771E5300266414 /* ItemControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemControllerDelegate.swift; sourceTree = "<group>"; };
 		F27C7E0A21771E5300266414 /* UtilityFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilityFunctions.swift; sourceTree = "<group>"; };
@@ -242,7 +248,6 @@
 		FA005E932015E490001EA8C6 /* UISearchBar+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Extensions.swift"; sourceTree = "<group>"; };
 		FA005E9520162BB5001EA8C6 /* Assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		FA005E9720166D51001EA8C6 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
-		FA25CAA42018677A00D1CB87 /* LikeButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeButtonCell.swift; sourceTree = "<group>"; };
 		FA3BB2732008B41B00E06F8F /* Alerts&Pickers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Alerts&Pickers.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA3BB2822008B41B00E06F8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA3BB2882008B45600E06F8F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -279,13 +284,10 @@
 		FA4B0368201A119C00D282E2 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		FA4B0369201A119C00D282E2 /* LocationSearchResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchResultsViewController.swift; sourceTree = "<group>"; };
 		FA4B036E201A652900D282E2 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
-		FA4B0374201A817200D282E2 /* CollectionViewPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewPhotoCell.swift; sourceTree = "<group>"; };
-		FA4B0376201A820200D282E2 /* PhotoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLayout.swift; sourceTree = "<group>"; };
 		FA4B0378201A82FC00D282E2 /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
 		FA4B037A201A85FE00D282E2 /* PhotoLibraryPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLibraryPickerViewController.swift; sourceTree = "<group>"; };
 		FA6E98C32017348800008C0C /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		FA6E98C62017ABE500008C0C /* VegaScrollFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VegaScrollFlowLayout.swift; sourceTree = "<group>"; };
-		FA7CE67720125F0A00FB3E72 /* TelegramPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelegramPickerViewController.swift; sourceTree = "<group>"; };
 		FA7CE6D820149F9B00FB3E72 /* ContactsPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsPickerViewController.swift; sourceTree = "<group>"; };
 		FA7CE6DA2014AC4C00FB3E72 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		FAAB5C82201BC16500CCE04D /* LocaleInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocaleInfo.swift; sourceTree = "<group>"; };
@@ -437,14 +439,50 @@
 			path = BSImagePickerLibrary;
 			sourceTree = "<group>";
 		};
-		D77815DF21677CC700DA6613 /* Managers */ = {
+		F2170EEE22CCBBF800EA5193 /* Telegram */ = {
 			isa = PBXGroup;
 			children = (
-				D77815E221677D4700DA6613 /* Camera.swift */,
-				D7B813B521806924000CB256 /* AssetsCollection.swift */,
-				D7C53664218094F600C7B69A /* AssetsCollection+ChangesObserver.swift */,
+				F2170EEF22CCBBF800EA5193 /* TelegramPickerGalleryItemsDataSource.swift */,
+				F2170EF022CCBBF800EA5193 /* Managers */,
+				F2170EF422CCBBF800EA5193 /* TelegramPickerConfigurator.swift */,
+				F2170EF522CCBBF800EA5193 /* Layouts */,
+				F2170EF722CCBBF800EA5193 /* TelegramPickerViewController.swift */,
+				F2170EF822CCBBF800EA5193 /* Views */,
+				F2170EFF22CCBBF800EA5193 /* TelegramPickerResourceProvider.swift */,
+			);
+			name = Telegram;
+			path = Pickers/Telegram;
+			sourceTree = "<group>";
+		};
+		F2170EF022CCBBF800EA5193 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				F2170EF122CCBBF800EA5193 /* AssetsCollection+ChangesObserver.swift */,
+				F2170EF222CCBBF800EA5193 /* Camera.swift */,
+				F2170EF322CCBBF800EA5193 /* AssetsCollection.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		F2170EF522CCBBF800EA5193 /* Layouts */ = {
+			isa = PBXGroup;
+			children = (
+				F2170EF622CCBBF800EA5193 /* PhotoLayout.swift */,
+			);
+			path = Layouts;
+			sourceTree = "<group>";
+		};
+		F2170EF822CCBBF800EA5193 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F2170EF922CCBBF800EA5193 /* CollectionViewVideoCell.swift */,
+				F2170EFA22CCBBF800EA5193 /* CollectionViewCameraCell.swift */,
+				F2170EFB22CCBBF800EA5193 /* CollectionViewPhotoCell.swift */,
+				F2170EFC22CCBBF800EA5193 /* CollectionViewCustomContentCell.swift */,
+				F2170EFD22CCBBF800EA5193 /* CollectionViewNoAccessCell.swift */,
+				F2170EFE22CCBBF800EA5193 /* LikeButtonCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		F27C7E0621771E5300266414 /* ImageViewer */ = {
@@ -610,7 +648,6 @@
 				FA4B0371201A810700D282E2 /* PhotoLibrary */,
 				FAAB5C92201BCC4800CCE04D /* PickerView */,
 				194B930421ECB180002F0A0C /* MediaPicker */,
-				FA4B0370201A805000D282E2 /* Telegram */,
 				FAAB5C8F201BCBA100CCE04D /* TextFields */,
 			);
 			path = Pickers;
@@ -633,6 +670,7 @@
 		FA3BB2CB2008B87A00E06F8F /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				F2170EEE22CCBBF800EA5193 /* Telegram */,
 				FA826F83200E8B6200ECC926 /* Viewers */,
 				FA3BB2932008B46600E06F8F /* Extensions */,
 				FA3BB2A12008B46800E06F8F /* Pickers */,
@@ -650,20 +688,6 @@
 				FAAB5C90201BCC0400CCE04D /* Models */,
 			);
 			path = Location;
-			sourceTree = "<group>";
-		};
-		FA4B0370201A805000D282E2 /* Telegram */ = {
-			isa = PBXGroup;
-			children = (
-				D77815DF21677CC700DA6613 /* Managers */,
-				FA7CE67720125F0A00FB3E72 /* TelegramPickerViewController.swift */,
-				D725CCC4216CBE6D001A6974 /* TelegramPickerResourceProvider.swift */,
-				D71CAE0D2188386000B22700 /* TelegramPickerConfigurator.swift */,
-				D7361715217F35BC0015D824 /* TelegramPickerGalleryItemsDataSource.swift */,
-				FAAB5C93201BCC5D00CCE04D /* Layouts */,
-				FAAB5C94201BCC6500CCE04D /* Views */,
-			);
-			path = Telegram;
 			sourceTree = "<group>";
 		};
 		FA4B0371201A810700D282E2 /* PhotoLibrary */ = {
@@ -782,26 +806,6 @@
 				FA3BB2A52008B46800E06F8F /* PickerViewViewController.swift */,
 			);
 			path = PickerView;
-			sourceTree = "<group>";
-		};
-		FAAB5C93201BCC5D00CCE04D /* Layouts */ = {
-			isa = PBXGroup;
-			children = (
-				FA4B0376201A820200D282E2 /* PhotoLayout.swift */,
-			);
-			path = Layouts;
-			sourceTree = "<group>";
-		};
-		FAAB5C94201BCC6500CCE04D /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				D77815E42167A1EB00DA6613 /* CollectionViewCustomContentCell.swift */,
-				D77815E72167A39F00DA6613 /* CollectionViewCameraCell.swift */,
-				FA4B0374201A817200D282E2 /* CollectionViewPhotoCell.swift */,
-				F27C7DFC2175ECF100266414 /* CollectionViewVideoCell.swift */,
-				FA25CAA42018677A00D1CB87 /* LikeButtonCell.swift */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		FAAB5C95201BCC8D00CCE04D /* Date */ = {
@@ -969,6 +973,7 @@
 				D725CCC8216CD16F001A6974 /* ExampleTelegramPickerLocalizer.swift in Sources */,
 				F27C7E4221771E5300266414 /* UIBezierPath.swift in Sources */,
 				F27C7E3E21771E5300266414 /* CALayer.swift in Sources */,
+				F2170F0122CCBBF900EA5193 /* AssetsCollection+ChangesObserver.swift in Sources */,
 				194B931F21ED9DEB002F0A0C /* NSIndexSet+NSIndexPath.swift in Sources */,
 				194B932421ED9DEB002F0A0C /* AlbumsViewController.swift in Sources */,
 				F27C7E4421771E5300266414 /* UIButton.swift in Sources */,
@@ -978,9 +983,9 @@
 				F27C7E5121771E5300266414 /* ItemBaseController.swift in Sources */,
 				F27C7E4C21771E5300266414 /* UISlider.swift in Sources */,
 				194B933F21EDE5D1002F0A0C /* DLGAlbumsViewController.swift in Sources */,
-				F27C7DFD2175ECF100266414 /* CollectionViewVideoCell.swift in Sources */,
 				F27C7E3921771E5300266414 /* VideoView.swift in Sources */,
 				FA005E9820166D51001EA8C6 /* Contact.swift in Sources */,
+				F2170F0922CCBBF900EA5193 /* CollectionViewPhotoCell.swift in Sources */,
 				FA4B036B201A119C00D282E2 /* LocationPickerViewController.swift in Sources */,
 				194B933421ED9EDB002F0A0C /* BSImageView.swift in Sources */,
 				F27C7E4F21771E5300266414 /* GalleryItem.swift in Sources */,
@@ -1001,37 +1006,38 @@
 				FAAB5C9D201BD1F700CCE04D /* TypeOneCell.swift in Sources */,
 				D7C5365F21807D2000C7B69A /* PHFetchResult+Extensions.swift in Sources */,
 				F27C7E5621771E5300266414 /* GalleryPagingDataSource.swift in Sources */,
+				F2170F0222CCBBF900EA5193 /* Camera.swift in Sources */,
 				194B932B21ED9DEB002F0A0C /* PhotoCollectionViewDataSource.swift in Sources */,
-				FA4B0377201A820200D282E2 /* PhotoLayout.swift in Sources */,
 				D7636E48216FB7FB0063BCDB /* UIView+Extensions.swift in Sources */,
 				FA4B037B201A85FE00D282E2 /* PhotoLibraryPickerViewController.swift in Sources */,
-				D77815E52167A1EB00DA6613 /* CollectionViewCustomContentCell.swift in Sources */,
 				FAAB5CA8201F74B700CCE04D /* AttributedTextBlock.swift in Sources */,
 				FA3BB2BB2008B46900E06F8F /* Optional+Extensions.swift in Sources */,
 				F27C7E3B21771E5300266414 /* ThumbnailCell.swift in Sources */,
 				F27C7E3621771E5300266414 /* ItemController.swift in Sources */,
+				F2170F0522CCBBF900EA5193 /* PhotoLayout.swift in Sources */,
 				F28F1C442179EFF7000F866F /* PickerCustomizableButton.swift in Sources */,
 				FABFAA68200C963F00961895 /* ColorPickerViewController.swift in Sources */,
 				F27C7E4121771E5300266414 /* CGSize.swift in Sources */,
 				194B932521ED9DEB002F0A0C /* ZoomAnimator.swift in Sources */,
-				D7361716217F35BC0015D824 /* TelegramPickerGalleryItemsDataSource.swift in Sources */,
+				F2170F0822CCBBF900EA5193 /* CollectionViewCameraCell.swift in Sources */,
 				FA3BB2B12008B46800E06F8F /* TextField.swift in Sources */,
 				FA6E98C72017ABE500008C0C /* VegaScrollFlowLayout.swift in Sources */,
 				FA7CE6DB2014AC4C00FB3E72 /* UIImageView+Extensions.swift in Sources */,
 				FA3BB2C62008B46900E06F8F /* ViewController.swift in Sources */,
 				FA3BB2B92008B46900E06F8F /* UIImage+Extensions.swift in Sources */,
 				FA3BB2C32008B46900E06F8F /* LocalePickerViewController.swift in Sources */,
+				F2170F0A22CCBBF900EA5193 /* CollectionViewCustomContentCell.swift in Sources */,
 				FA3BB2C42008B46900E06F8F /* TwoTextFieldsViewController.swift in Sources */,
 				194B933B21EDC204002F0A0C /* DLGMediaPickerViewController.swift in Sources */,
 				FA3BB2B02008B46800E06F8F /* SegmentedControl.swift in Sources */,
+				F2170F0022CCBBF900EA5193 /* TelegramPickerGalleryItemsDataSource.swift in Sources */,
 				F27C7E5021771E5300266414 /* GalleryDisplacedViewsDataSource.swift in Sources */,
-				FA25CAA52018677A00D1CB87 /* LikeButtonCell.swift in Sources */,
 				194B932921ED9DEB002F0A0C /* ComposedCollectionViewDataSource.swift in Sources */,
 				194B932221ED9DEB002F0A0C /* BSImagePickerViewController.swift in Sources */,
 				194B933821ED9F92002F0A0C /* GridCollectionViewLayout.swift in Sources */,
+				F2170F0622CCBBF900EA5193 /* TelegramPickerViewController.swift in Sources */,
 				FA4B036A201A119C00D282E2 /* SearchHistoryManager.swift in Sources */,
 				FA3BB2B32008B46800E06F8F /* UISegmentedControl+Extensions.swift in Sources */,
-				D7C53665218094F600C7B69A /* AssetsCollection+ChangesObserver.swift in Sources */,
 				F27C7E3221771E5300266414 /* GalleryConfiguration.swift in Sources */,
 				FAAB5C8E201BCB2500CCE04D /* PhoneCodeCell.swift in Sources */,
 				F27C7E3321771E5300266414 /* ItemControllerDelegate.swift in Sources */,
@@ -1040,12 +1046,14 @@
 				194B932721ED9DEB002F0A0C /* Settings.swift in Sources */,
 				194B933D21EDC63D002F0A0C /* DLGPhotosViewController.swift in Sources */,
 				FA3BB2C52008B46900E06F8F /* OneTextFieldViewController.swift in Sources */,
+				F2170F0D22CCBBF900EA5193 /* TelegramPickerResourceProvider.swift in Sources */,
 				194B930321ECB02A002F0A0C /* ShortTapGestureRecognizer.swift in Sources */,
 				FA3BB2BE2008B46900E06F8F /* UITextField+Extensions.swift in Sources */,
 				F28F1C422179EE04000F866F /* PickerStyle.swift in Sources */,
 				F27C7E3421771E5300266414 /* UtilityFunctions.swift in Sources */,
 				FA3BB2B62008B46800E06F8F /* String+Extensions.swift in Sources */,
 				FAAB5C83201BC16500CCE04D /* LocaleInfo.swift in Sources */,
+				F2170F0422CCBBF900EA5193 /* TelegramPickerConfigurator.swift in Sources */,
 				F27C7E3C21771E5300266414 /* ImageViewController.swift in Sources */,
 				F27C7E4521771E5300266414 /* UIViewController.swift in Sources */,
 				FA005E942015E490001EA8C6 /* UISearchBar+Extensions.swift in Sources */,
@@ -1053,41 +1061,38 @@
 				F27C7E5721771E5300266414 /* ImageFadeInHandler.swift in Sources */,
 				FA3BB2B52008B46800E06F8F /* Date+Extension.swift in Sources */,
 				FA3BB2C02008B46900E06F8F /* DatePickerViewController.swift in Sources */,
+				F2170F0322CCBBF900EA5193 /* AssetsCollection.swift in Sources */,
 				194B932D21ED9DEB002F0A0C /* AlbumCell.swift in Sources */,
 				194B932821ED9DEB002F0A0C /* AlbumTableViewDataSource.swift in Sources */,
 				FA4B036C201A119C00D282E2 /* Location.swift in Sources */,
 				FA3BB2AF2008B46800E06F8F /* Label.swift in Sources */,
 				FA005E9620162BB5001EA8C6 /* Assets.swift in Sources */,
 				FA3BB2BA2008B46900E06F8F /* UIAlertController+Extensions.swift in Sources */,
+				F2170F0C22CCBBF900EA5193 /* LikeButtonCell.swift in Sources */,
 				FA3BB2C22008B46900E06F8F /* PickerViewViewController.swift in Sources */,
-				D725CCC5216CBE6D001A6974 /* TelegramPickerResourceProvider.swift in Sources */,
 				F27C7E4321771E5300266414 /* CGPoint.swift in Sources */,
 				F27C7E3D21771E5300266414 /* GalleryItemsDataSource.swift in Sources */,
-				D71CAE0E2188386000B22700 /* TelegramPickerConfigurator.swift in Sources */,
 				FAAB5CA0201BD4B000CCE04D /* ItemWithImage.swift in Sources */,
-				D77815E321677D4700DA6613 /* Camera.swift in Sources */,
 				F27C7E4721771E5300266414 /* AVPlayer.swift in Sources */,
 				194B934721EF4722002F0A0C /* DLGMediaPickerGalleryItemsDataSource.swift in Sources */,
+				F2170F0722CCBBF900EA5193 /* CollectionViewVideoCell.swift in Sources */,
 				F27C7E4021771E5300266414 /* UIColor.swift in Sources */,
 				194B933521ED9EDB002F0A0C /* ImageViewLayout.swift in Sources */,
 				194B932321ED9DEB002F0A0C /* PhotosViewController.swift in Sources */,
-				FA4B0375201A817200D282E2 /* CollectionViewPhotoCell.swift in Sources */,
 				194B932021ED9DEB002F0A0C /* BSImagePickerSettings.swift in Sources */,
 				F27C7E3721771E5300266414 /* VideoScrubber.swift in Sources */,
 				194B932A21ED9DEB002F0A0C /* CameraCollectionViewDataSource.swift in Sources */,
-				FA7CE67820125F0A00FB3E72 /* TelegramPickerViewController.swift in Sources */,
 				194B932C21ED9DEB002F0A0C /* PhotoCell.swift in Sources */,
 				FA4B036D201A119C00D282E2 /* LocationSearchResultsViewController.swift in Sources */,
-				D7B813B621806924000CB256 /* AssetsCollection.swift in Sources */,
 				FAAB5CA6201DEE9C00CCE04D /* UIViewController+Extensions.swift in Sources */,
 				F27C7E4B21771E5300266414 /* UIScreen.swift in Sources */,
 				F27C7E4821771E5300266414 /* Bool.swift in Sources */,
 				FA3BB2B22008B46800E06F8F /* Array+Extensions.swift in Sources */,
-				D77815E82167A39F00DA6613 /* CollectionViewCameraCell.swift in Sources */,
 				F27C7E4621771E5300266414 /* UIImageView.swift in Sources */,
 				F27C7E3A21771E5300266414 /* ThumbnailsViewController.swift in Sources */,
 				F27C7E4921771E5300266414 /* CGRect.swift in Sources */,
 				FA4B036F201A652900D282E2 /* Address.swift in Sources */,
+				F2170F0B22CCBBF900EA5193 /* CollectionViewNoAccessCell.swift in Sources */,
 				FA3BB2BD2008B46900E06F8F /* Locale+Extensions.swift in Sources */,
 				D79100182195AF56003ADB1A /* AlertIconCollection.swift in Sources */,
 				194B932621ED9DEB002F0A0C /* AssetStore.swift in Sources */,

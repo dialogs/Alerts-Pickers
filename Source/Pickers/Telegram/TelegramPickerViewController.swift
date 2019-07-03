@@ -73,7 +73,8 @@ final public class TelegramPickerViewController: UIViewController {
     }
     
     enum StreamItem: Equatable {
-        
+        case noAccessToCamera
+        case noAccessToPhotos
         case photo(PHAsset)
         case video(PHAsset)
         case camera
@@ -85,10 +86,27 @@ final public class TelegramPickerViewController: UIViewController {
             }
         }
         
+        var isRepresentingCamera: Bool {
+            switch self {
+            case .camera, .noAccessToCamera: return true
+            default: return false
+            }
+        }
+        
         var asset: PHAsset? {
             switch self {
-            case .camera: return nil
             case .photo(let asset), .video(let asset): return asset
+            default: return nil
+            }
+        }
+        
+        private var typeId: Int {
+            switch self {
+            case .camera: return 1
+            case .noAccessToCamera: return 2
+            case .noAccessToPhotos: return 3
+            case .photo(_): return 4
+            case .video(_): return 5
             }
         }
         
@@ -96,8 +114,7 @@ final public class TelegramPickerViewController: UIViewController {
             switch (lhs, rhs) {
             case (let .photo(lhsAsset), let .photo(rhsAsset)): return lhsAsset == rhsAsset
             case (let .video(lhsAsset), let .video(rhsAsset)): return lhsAsset == rhsAsset
-            case (.camera, .camera): return true
-            default: return false
+            default: return lhs.typeId == rhs.typeId
             }
         }
         
@@ -126,7 +143,7 @@ final public class TelegramPickerViewController: UIViewController {
                         completion(url)
                     })
                 })
-            case .camera:
+            default:
                 return nil
             }
         }
@@ -136,12 +153,18 @@ final public class TelegramPickerViewController: UIViewController {
         case photo
         case video
         case camera
+        case noAccess
     }
     
     enum Mode: Int {
         case normal
         case bigPhotoPreviews
         case documentType
+    }
+    
+    enum NoAccessType {
+        case noCameraAccess
+        case noPhotoAccess
     }
     
     struct UI {
@@ -216,8 +239,16 @@ final public class TelegramPickerViewController: UIViewController {
         }
     }
     
+    public var shouldShowCameraNoAccess: Bool {
+        return AVCaptureDevice.authorizationStatus(for: .video) != .authorized
+    }
+    
     public var shouldShowCameraStream: Bool {
         return cameraCellNeeded && mode == .normal
+    }
+    
+    public var shouldShowPhotosNoAccess: Bool {
+        return PHPhotoLibrary.authorizationStatus() != .authorized
     }
     
     /**
@@ -248,6 +279,7 @@ final public class TelegramPickerViewController: UIViewController {
         $0.register(CollectionViewPhotoCell.self, forCellWithReuseIdentifier: CellId.photo.rawValue)
         $0.register(CollectionViewVideoCell.self, forCellWithReuseIdentifier: CellId.video.rawValue)
         $0.register(CollectionViewCameraCell.self, forCellWithReuseIdentifier: CellId.camera.rawValue)
+        $0.register(CollectionViewNoCameraAccessCell.self, forCellWithReuseIdentifier: CellId.noAccess.rawValue)
         
         return $0
         }(UICollectionView(frame: .zero, collectionViewLayout: layout))
@@ -333,11 +365,11 @@ final public class TelegramPickerViewController: UIViewController {
     
     func sizeForItem(item: StreamItem) -> CGSize {
         switch item {
-        case .camera:
-            let side = UI.maxHeight / UI.multiplier
-            return CGSize.init(width: side, height: side)
         case .photo(let asset), .video(let asset):
             return sizeForAsset(asset: asset)
+        default:
+            let side = UI.maxHeight / UI.multiplier
+            return CGSize.init(width: side, height: side)
         }
     }
     
@@ -356,6 +388,7 @@ final public class TelegramPickerViewController: UIViewController {
         
         updatePhotos()
         updateCamera()
+        resetItems()
     }
     
     public override func viewWillLayoutSubviews() {
@@ -374,36 +407,47 @@ final public class TelegramPickerViewController: UIViewController {
     
     func resetItems() {
         
-        var newItems = items
-        var hasCameraItem = false
-        var itemsChanged = false
-        
-        if let first = newItems.first, first.isCamera {
-            hasCameraItem = true
+        var newItems: [StreamItem] = []
+        if !shouldShowPhotosNoAccess {
+            newItems = createItems(assets: assetsCollection.assets)
         }
         
-        if shouldShowCameraStream && !hasCameraItem {
-            newItems.insert(.camera, at: 0)
-            itemsChanged = true
-        }
-        else if !shouldShowCameraStream && hasCameraItem {
-            newItems.remove(at: 0)
-            itemsChanged = true
-        }
-        
-        guard itemsChanged else {
-            return
+        if shouldShowCameraStream {
+            let item: StreamItem = shouldShowCameraNoAccess ? .noAccessToCamera : .camera
+            newItems.insert(item, at: 0)
         }
         
         resetItems(newItems: newItems)
     }
     
-    func resetItems(assets: [PHAsset]) {
+    func updateItemsByInsetingCamera() {
+        guard !items.contains(.camera) else {
+            return
+        }
         
+        var newItems = items
+        if let index = items.firstIndex(of: .noAccessToCamera) {
+            newItems[index] = .camera
+            
+            collectionView.performBatchUpdates({
+                items = newItems
+                collectionView.reloadItems(at: [IndexPath(item: index, section: 0)])
+            }, completion: nil)
+        }
+        else {
+            newItems.insert(.camera, at: 0)
+            
+            collectionView.performBatchUpdates({
+                items = newItems
+                collectionView.insertItems(at: [IndexPath(item: 0, section: 0)])
+            }, completion: nil)
+        }
+    }
+    
+    func createItems(assets: [PHAsset]) -> [StreamItem] {
         let videosAllowed = mediaTypes.contains(.videos)
         let photosAllowed = mediaTypes.contains(.photos)
-        
-        var newItems = assets
+        return assets
             .filter({
                 switch $0.mediaType {
                 case .image: return photosAllowed
@@ -412,9 +456,17 @@ final public class TelegramPickerViewController: UIViewController {
                 }
             })
             .compactMap({ StreamItem.init(asset: $0) })
+    }
+    
+    func resetItems(assets: [PHAsset]) {
+        var newItems: [StreamItem] = []
+        if !shouldShowPhotosNoAccess {
+            newItems = createItems(assets: assets)
+        }
         
         if shouldShowCameraStream {
-            newItems.insert(.camera, at: 0)
+            let item: StreamItem = shouldShowCameraNoAccess ? .noAccessToCamera : .camera
+            newItems.insert(item, at: 0)
         }
         
         resetItems(newItems: newItems)
@@ -494,16 +546,17 @@ final public class TelegramPickerViewController: UIViewController {
         case .authorized:
             /// Authorization granted by user for this app.
             DispatchQueue.main.async {
+                self.resetItems()
                 self.runAssetsCollection()
             }
             
         case .denied, .restricted:
             /// User has denied the current app to access the contacts.
+            let alert = localizer.localizedAlert(failure: .noAccessToPhoto)
             dismiss(animated: false) {
-                if let alert = self.localizer.localizedAlert(failure: .noAccessToPhoto) {
-                    alert.show()
-                }
+                alert?.show()
             }
+            break
         }
     }
     
@@ -603,6 +656,12 @@ final public class TelegramPickerViewController: UIViewController {
             
         case .photo(let asset), .video(let asset):
             selectionItem = .media([asset])
+            
+        case .noAccessToCamera:
+            updateCamera()
+            
+        case .noAccessToPhotos:
+            break
         }
         
         if let item = selectionItem {
@@ -623,6 +682,12 @@ final public class TelegramPickerViewController: UIViewController {
         case .video(let asset):
             collectionView.deselectItem(at: indexPath, animated: false)
             self.openPreview(with: asset, at: indexPath)
+        
+        case .noAccessToCamera:
+            updateCamera()
+            
+        case .noAccessToPhotos:
+            break
         }
     }
     
@@ -779,7 +844,12 @@ final public class TelegramPickerViewController: UIViewController {
         case .photoOrVideo:
             let selection = self.selection
             alertController?.dismiss(animated: true) {
-                selection(.photoLibrary)
+                if self.shouldShowPhotosNoAccess {
+                    let alert = self.localizer.localizedAlert(failure: .noAccessToPhoto)
+                    alert?.show()
+                } else {
+                    selection(.photoLibrary)
+                }
             }
             
         case .photoAsFile:
@@ -850,6 +920,8 @@ extension TelegramPickerViewController: UICollectionViewDelegate {
             return false
         case .photo(_), .video(_):
             return true
+        default:
+            return true
         }
     }
     
@@ -875,8 +947,19 @@ extension TelegramPickerViewController: UICollectionViewDataSource {
             
         case .photo(let asset), .video(let asset):
             return dequeue(collectionView, cellForAsset: asset, at: indexPath)
+            
+        case .noAccessToCamera:
+            return dequeue(collectionView, noAccess: .noCameraAccess, cellAt: indexPath)
+            
+        case .noAccessToPhotos:
+            return dequeue(collectionView, noAccess: .noPhotoAccess, cellAt: indexPath)
         }
         
+    }
+    
+    private func dequeue(_ collectionView: UICollectionView, noAccess: NoAccessType, cellAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell: CollectionViewNoCameraAccessCell = dequeue(collectionView, id: .noAccess, indexPath: indexPath)
+        return cell
     }
     
     private func dequeue(_ collectionView: UICollectionView, cellForCameraAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -944,6 +1027,9 @@ extension TelegramPickerViewController: UICollectionViewDataSource {
             }
             
             cameraCell.customContentView.representedStream = self.cameraStream
+            
+        default:
+            break
         }
         
         self.updateVisibleAreaRect(cell: cell, indexPath: indexPath)
@@ -1021,12 +1107,22 @@ extension TelegramPickerViewController: UICollectionViewDataSource {
     }
     
     private func updateCameraCells() {
-        for entry in visibleItemEntries where entry.item.isCamera {
-            guard let cell = collectionView.cellForItem(at: entry.indexPath) as? CollectionViewCameraCell else {
-                return
-            }
-            cell.customContentView.representedStream = cameraStream
+        
+        guard shouldShowCameraStream else {
+            return
         }
+        
+        if items.contains(.camera) {
+            for entry in visibleItemEntries where entry.item.isCamera {
+                guard let cell = collectionView.cellForItem(at: entry.indexPath) as? CollectionViewCameraCell else {
+                    return
+                }
+                cell.customContentView.representedStream = cameraStream
+            }
+        } else {
+            
+        }
+
     }
     
     private func dismissWithSelectionItem(item: TelegramSelectionType) {
