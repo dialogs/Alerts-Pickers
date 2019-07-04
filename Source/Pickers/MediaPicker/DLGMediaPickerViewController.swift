@@ -16,11 +16,20 @@ public class DLGMediaPickerViewController: BSImagePickerViewController {
     var finishClosure: ((_ assets: [PHAsset]) -> Void)?
     var selectLimitReachedClosure: ((_ selectionLimit: Int) -> Void)?
     
-    public var pickerSetting: BSImagePickerSettings = {
-        var setting = Settings()
-        setting.selectionFillColor = PickerStyle.shared.selectionButtonTintColor
-        return setting
-    }()
+    public override init() {
+        super.init()
+        commonInit()
+    }
+    
+    required public init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        commonInit()
+    }
+    
+    private func commonInit(){
+        settings.selectionFillColor = PickerStyle.shared.selectionButtonTintColor
+    }
+
     
     @objc private lazy var dlgPhotosViewController: DLGPhotosViewController = makePhotoViewController()
     private lazy var toolItems: [UIBarButtonItem] = {
@@ -90,7 +99,7 @@ public class DLGMediaPickerViewController: BSImagePickerViewController {
         let assetStore = AssetStore(assets: selections)
         let vc = DLGPhotosViewController(fetchResults: self.fetchResults,
                                          assetStore: assetStore,
-                                         settings: self.pickerSetting)
+                                         settings: settings)
         vc.toolbarItems = toolItems
         vc.doneBarButton = doneButton
         vc.cancelBarButton = cancelButton
