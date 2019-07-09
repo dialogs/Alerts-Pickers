@@ -128,7 +128,8 @@ extension DLGPhotosViewController {
                 source.assetStore.remove(asset)
                 tappedButton.setSelected(false, withTitle: nil, animated: true)
             } else {
-                if assetStore.count == settings.maxNumberOfSelections {
+                // If we can pick only one asset we should remove prev selection
+                if assetStore.count == settings.maxNumberOfSelections && settings.maxNumberOfSelections == 1 {
                     source.assetStore.removeFirst()
                 }
                 source.assetStore.append(asset)

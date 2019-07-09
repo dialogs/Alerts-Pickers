@@ -277,9 +277,12 @@ class PhotosViewController : UICollectionViewController {
             // Call selection closure
             selectionClosure?(asset)
         } else if assetStore.count >= settings.maxNumberOfSelections {
-            assetStore.removeFirst()
-            assetStore.append(asset)
-            self.collectionView?.reloadData()
+            // If we can pick only one asset, we should replace selection with new value
+            if (settings.maxNumberOfSelections == 1){
+                assetStore.removeFirst()
+                assetStore.append(asset)
+                self.collectionView?.reloadData()
+            }
             
             // Call select limit closure
             selectLimitReachedClosure?(assetStore.count)
