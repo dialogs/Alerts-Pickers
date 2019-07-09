@@ -25,6 +25,7 @@ class ViewController: UIViewController {
         case contactsPicker = "Contacts Picker"
         case locationPicker = "Location Picker"
         case telegramPicker = "Telegram Picker"
+        case avatarPicker = "Avatar Picker"
         
         var description: String {
             switch self {
@@ -45,12 +46,13 @@ class ViewController: UIViewController {
             case .contactsPicker: return "With SearchController"
             case .locationPicker: return "MapView With SearchController"
             case .telegramPicker: return "Similar to the Telegram"
+            case .avatarPicker: return "Avatar picker similar to the Telegram but has 2 buttons with text"
             }
         }
         
         var color: UIColor? {
             switch self {
-            case .simple, .simpleWithImages, .telegramPicker, .singlePhoto:
+            case .simple, .simpleWithImages, .telegramPicker, .singlePhoto, .avatarPicker:
                 return UIColor(hex: 0x007AFF)
             case .oneTextField, .twoTextFields:
                 return UIColor(hex: 0x5AC8FA)
@@ -68,6 +70,7 @@ class ViewController: UIViewController {
     
     fileprivate lazy var alerts: [AlertType] = [
         .telegramPicker,
+        .avatarPicker,
         .singlePhoto,
         .simple,
         .simpleWithImages,
@@ -423,13 +426,45 @@ class ViewController: UIViewController {
             
             alert.addAction(title: "Cancel", style: .cancel)
             alert.show()
+            
+        case .avatarPicker:
+            let alert = UIAlertController(style: .actionSheet)
+            alert.view.tintColor = UIColor.purple
+            
+            let picker = TelegramPickerViewController(selection: { [weak alert, weak self] result in
+                switch result {
+                case .media(let assets):
+                    Log(assets)
+                case .photoLibrary:
+                    Log("photo library")
+                    let picker = DLGMediaPickerViewController()
+                    picker.settings.maxNumberOfSelections = 1
+                    self?.showMediaPicker(picker)
+                case .camera(let stream):
+                    Log(stream)
+                    alert?.dismiss(animated: true, completion: nil)
+                case .photosAsDocuments(let assets):
+                    Log("Photo as documents: " + assets.description)
+                default:
+                    fatalError("avatar picker doesnt support picking this")
+                }
+                }, localizer: ExampleTelegramPickerLocalizer())
+            
+            picker.mediaTypes = [.photos, .camera]
+            picker.disabledButtonTypes = [.contact, .location, .file]
+            picker.selectionMode = .single
+            
+            alert.addAction(title: "Remove photo", style: .destructive)
+            alert.addAction(title: "Cancel", style: .cancel)
+            
+            alert.setTelegramPicker(picker)
+            alert.show()
         }
     }
     
-    private func showMediaPicker() {
-        let vc = DLGMediaPickerViewController()
+    private func showMediaPicker(_ picker: DLGMediaPickerViewController = DLGMediaPickerViewController()) {
         DLGMediaPickerViewController.presentImagePickerController(in: self,
-                                                                  imagePicker: vc,
+                                                                  imagePicker: picker,
                                                                   animated: true,
                                                                   select: { (asset: PHAsset) -> Void in
                                                                     print("Selected: \(asset)")

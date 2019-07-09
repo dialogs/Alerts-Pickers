@@ -10,7 +10,7 @@ import UIKit
 
 internal extension TelegramPickerViewController {
     
-    internal class TelegramPickerGalleryItemsDataSource: GalleryItemsDataSource {
+    class TelegramPickerGalleryItemsDataSource: GalleryItemsDataSource {
         
         weak var controller: TelegramPickerViewController?
         
@@ -33,7 +33,7 @@ internal extension TelegramPickerViewController {
         
     }
     
-    internal func createGalleryItemsDataSource() -> GalleryItemsDataSource {
+    func createGalleryItemsDataSource() -> GalleryItemsDataSource {
         return TelegramPickerGalleryItemsDataSource.init(controller: self)
     }
     

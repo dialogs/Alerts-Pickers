@@ -231,6 +231,19 @@ class PhotosViewController : UICollectionViewController {
     func selectCell(_ cell: PhotoCell) {
         guard let asset = cell.asset else { return }
         
+        let reloadItems = {
+            let selectedIndexPaths = self.assetStore.assets.compactMap { (asset) -> IndexPath? in
+                guard let index = self.photosDataSource?.fetchResult.index(of: asset) else {
+                    return nil
+                }
+                return IndexPath(item: index, section: 1)
+            }
+            
+            // Reload selected cells to update their selection number
+            UIView.setAnimationsEnabled(false)
+            self.collectionView?.reloadItems(at: selectedIndexPaths)
+            UIView.setAnimationsEnabled(true)
+        }
         // Select or deselect?
         if assetStore.contains(asset) { // Deselect
             // Deselect asset
@@ -239,19 +252,7 @@ class PhotosViewController : UICollectionViewController {
             // Update done button
             updateDoneButton()
             
-            // Get indexPaths of selected items
-            let selectedIndexPaths = assetStore.assets.compactMap({ (asset) -> IndexPath? in
-                if let index = self.photosDataSource?.fetchResult.index(of: asset) {
-                    return IndexPath(item: index, section: 1)
-                } else {
-                    return nil
-                }
-            })
-            
-            // Reload selected cells to update their selection number
-            UIView.setAnimationsEnabled(false)
-            collectionView?.reloadItems(at: selectedIndexPaths)
-            UIView.setAnimationsEnabled(true)
+            reloadItems()
             
             cell.photoSelected = false
             
@@ -276,6 +277,14 @@ class PhotosViewController : UICollectionViewController {
             // Call selection closure
             selectionClosure?(asset)
         } else if assetStore.count >= settings.maxNumberOfSelections {
+            // If we can pick only one asset, we should replace selection with new value
+            if (settings.maxNumberOfSelections == 1){
+                assetStore.removeFirst()
+                assetStore.append(asset)
+                self.collectionView?.reloadData()
+            }
+            
+            // Call select limit closure
             selectLimitReachedClosure?(assetStore.count)
         }
     }

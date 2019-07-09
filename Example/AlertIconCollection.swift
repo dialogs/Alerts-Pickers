@@ -36,6 +36,7 @@ final class AlertIconCollection {
         case .dataPicker: return createImage(string: "🗓")
         case .countryPicker: return createImage(string: "🇦🇶")
         case .currencyPicker: return createImage(string: "💶")
+        case .avatarPicker: return createImage(string: "📸")
         default:
             return #imageLiteral(resourceName: "library")
         }

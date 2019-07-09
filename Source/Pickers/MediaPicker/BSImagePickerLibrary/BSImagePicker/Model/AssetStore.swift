@@ -47,4 +47,12 @@ class AssetStore {
         guard let index = assets.index(of: asset) else { return }
         assets.remove(at: index)
     }
+    
+    func removeAll(){
+        assets.removeAll(keepingCapacity: true)
+    }
+    
+    func removeFirst(){
+        assets.removeFirst()
+    }
 }
