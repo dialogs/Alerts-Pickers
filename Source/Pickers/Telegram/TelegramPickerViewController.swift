@@ -526,11 +526,14 @@ final public class TelegramPickerViewController: UIViewController {
             setupCameraStream(completionHandler)
             
         case .denied, .restricted:
-            /// User has denied the current app to access the camera.
-            let alert = localizer.localizedAlert(failure: .noAccessToCamera)
-            dismiss(animated: false) {
-                alert?.show()
+            DispatchQueue.main.async {
+                /// User has denied the current app to access the camera.
+                let alert = self.localizer.localizedAlert(failure: .noAccessToCamera)
+                self.dismiss(animated: false) {
+                    alert?.show()
+                }
             }
+            break
         }
     }
     
@@ -552,9 +555,11 @@ final public class TelegramPickerViewController: UIViewController {
             
         case .denied, .restricted:
             /// User has denied the current app to access the contacts.
-            let alert = localizer.localizedAlert(failure: .noAccessToPhoto)
-            dismiss(animated: false) {
-                alert?.show()
+            DispatchQueue.main.async {
+                let alert = self.localizer.localizedAlert(failure: .noAccessToPhoto)
+                self.dismiss(animated: false) {
+                    alert?.show()
+                }
             }
             break
         }
