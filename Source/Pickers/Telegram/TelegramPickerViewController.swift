@@ -314,6 +314,7 @@ final public class TelegramPickerViewController: UIViewController {
     let selection: TelegramSelection
     let localizer: TelegramPickerResourceProvider
     let configurator: TelegramPickerConfigurator
+    weak var presentsController: UIViewController?
     
     // MARK: - Funcs
     
@@ -321,10 +322,12 @@ final public class TelegramPickerViewController: UIViewController {
     
     required public init(selection: @escaping TelegramSelection,
                          localizer: TelegramPickerResourceProvider,
-                         configurator: TelegramPickerConfigurator = SimpleTelegramPickerConfigurator()) {
+                         configurator: TelegramPickerConfigurator = SimpleTelegramPickerConfigurator(),
+                         presentsController: UIViewController? = nil){
         self.selection = selection
         self.localizer = localizer
         self.configurator = configurator
+        self.presentsController = presentsController
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -510,7 +513,7 @@ final public class TelegramPickerViewController: UIViewController {
     func handleCameraStreamFailure(_ error: Error) {
         print("Error while setup camera stream. \(error.localizedDescription)")
         if let alert = localizer.localizedAlert(failure: .error(error)) {
-            alert.show()
+            alert.show(presentsController: self.presentsController)
         }
     }
     
@@ -526,11 +529,14 @@ final public class TelegramPickerViewController: UIViewController {
             setupCameraStream(completionHandler)
             
         case .denied, .restricted:
-            /// User has denied the current app to access the camera.
-            let alert = localizer.localizedAlert(failure: .noAccessToCamera)
-            dismiss(animated: false) {
-                alert?.show()
+            DispatchQueue.main.async {
+                /// User has denied the current app to access the camera.
+                let alert = self.localizer.localizedAlert(failure: .noAccessToCamera)
+                self.dismiss(animated: false) {
+                    alert?.show(presentsController: self.presentsController)
+                }
             }
+            break
         }
     }
     
@@ -552,9 +558,11 @@ final public class TelegramPickerViewController: UIViewController {
             
         case .denied, .restricted:
             /// User has denied the current app to access the contacts.
-            let alert = localizer.localizedAlert(failure: .noAccessToPhoto)
-            dismiss(animated: false) {
-                alert?.show()
+            DispatchQueue.main.async {
+                let alert = self.localizer.localizedAlert(failure: .noAccessToPhoto)
+                self.dismiss(animated: false) {
+                    alert?.show(presentsController: self.presentsController)
+                }
             }
             break
         }
@@ -573,7 +581,7 @@ final public class TelegramPickerViewController: UIViewController {
             
         case .failure(let error):
             if let alert = localizer.localizedAlert(failure: .error(error)) {
-                alert.show()
+                alert.show(presentsController: self.presentsController)
             }
             
         case .fullReloadNeeded:
@@ -637,7 +645,7 @@ final public class TelegramPickerViewController: UIViewController {
                 
             case .error(let error):
                 if let alert = self?.localizer.localizedAlert(failure: .error(error)) {
-                    alert.show()
+                    alert.show(presentsController: self?.presentsController)
                 }
             }
         }
@@ -846,7 +854,7 @@ final public class TelegramPickerViewController: UIViewController {
             alertController?.dismiss(animated: true) {
                 if self.shouldShowPhotosNoAccess {
                     let alert = self.localizer.localizedAlert(failure: .noAccessToPhoto)
-                    alert?.show()
+                    alert?.show(presentsController: self.presentsController)
                 } else {
                     selection(.photoLibrary)
                 }
