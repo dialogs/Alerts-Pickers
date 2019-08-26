@@ -48,7 +48,17 @@ extension UIAlertController {
     ///   - animated: set true to animate presentation of alert controller (default is true).
     ///   - vibrate: set true to vibrate the device while presenting the alert (default is false).
     ///   - completion: an optional completion handler to be called after presenting alert controller (default is nil).
-    func show(animated: Bool = true, vibrate: Bool = false, style: UIBlurEffectStyle? = nil, completion: (() -> Void)? = nil) {
+    func show(presentsController: UIViewController? = nil,
+              animated: Bool = true,
+              vibrate: Bool = false,
+              style: UIBlurEffectStyle? = nil,
+              completion: (() -> Void)? = nil) {
+        
+        defer {
+            if vibrate {
+                AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
+            }
+        }
         
         /// TODO: change UIBlurEffectStyle
         if let style = style {
@@ -58,10 +68,11 @@ extension UIAlertController {
         }
         
         DispatchQueue.main.async {
-            UIApplication.shared.keyWindow?.rootViewController?.present(self, animated: animated, completion: completion)
-            if vibrate {
-                AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
+            guard let presentsController = presentsController else {
+                UIApplication.shared.keyWindow?.rootViewController?.present(self, animated: animated, completion: completion)
+                return
             }
+            presentsController.present(self, animated: animated, completion: completion)
         }
     }
     

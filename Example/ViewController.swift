@@ -414,7 +414,7 @@ class ViewController: UIViewController {
                 case .document:
                     Log("Document")
                 }
-            }, localizer: ExampleTelegramPickerLocalizer())
+            }, localizer: ExampleTelegramPickerLocalizer(), presentsController: self)
             
             if type == .singlePhoto {
                 picker.mediaTypes = [.photos, .camera]
