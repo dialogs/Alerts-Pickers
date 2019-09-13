@@ -855,7 +855,7 @@ final public class TelegramPickerViewController: UIViewController {
             let selection = self.selection
             alertController?.dismiss(animated: true) {
                 if self.shouldShowPhotosNoAccess {
-                    let alert = self.localizer.localizedAlert(failure: .noAccessToPhoto)
+                    let alert = self.localizer.localizedAlert(failure: .noAccessToPhoto, cancelCompletion: self.accesDeniedCompletion)
                     alert?.show(presentsController: self.presentsController)
                 } else {
                     selection(.photoLibrary)
