@@ -263,6 +263,9 @@ final public class TelegramPickerViewController: UIViewController {
         return entries
     }
     
+    /// Called in case access to service has been denied.
+    public var accesDeniedCompletion: (()-> Void)?
+    
     // MARK: Properties
     
     fileprivate lazy var collectionView: UICollectionView = { [unowned self] in
@@ -531,7 +534,7 @@ final public class TelegramPickerViewController: UIViewController {
         case .denied, .restricted:
             DispatchQueue.main.async {
                 /// User has denied the current app to access the camera.
-                let alert = self.localizer.localizedAlert(failure: .noAccessToCamera)
+                let alert = self.localizer.localizedAlert(failure: .noAccessToCamera, cancelCompletion: self.accesDeniedCompletion)
                 self.dismiss(animated: false) {
                     alert?.show(presentsController: self.presentsController)
                 }
@@ -559,7 +562,7 @@ final public class TelegramPickerViewController: UIViewController {
         case .denied, .restricted:
             /// User has denied the current app to access the contacts.
             DispatchQueue.main.async {
-                let alert = self.localizer.localizedAlert(failure: .noAccessToPhoto)
+                let alert = self.localizer.localizedAlert(failure: .noAccessToPhoto, cancelCompletion: self.accesDeniedCompletion)
                 self.dismiss(animated: false) {
                     alert?.show(presentsController: self.presentsController)
                 }
@@ -853,7 +856,7 @@ final public class TelegramPickerViewController: UIViewController {
             let selection = self.selection
             alertController?.dismiss(animated: true) {
                 if self.shouldShowPhotosNoAccess {
-                    let alert = self.localizer.localizedAlert(failure: .noAccessToPhoto)
+                    let alert = self.localizer.localizedAlert(failure: .noAccessToPhoto, cancelCompletion: self.accesDeniedCompletion)
                     alert?.show(presentsController: self.presentsController)
                 } else {
                     selection(.photoLibrary)
