@@ -263,6 +263,7 @@ final public class TelegramPickerViewController: UIViewController {
         return entries
     }
     
+    /// Called in case access to service has been denied.
     public var accesDeniedCompletion: (()-> Void)?
     
     // MARK: Properties
