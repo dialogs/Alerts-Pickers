@@ -304,7 +304,7 @@ final public class TelegramPickerViewController: UIViewController {
         $0.tableHeaderView = collectionView
         $0.tableFooterView = UIView()
         $0.register(LikeButtonCell.self, forCellReuseIdentifier: LikeButtonCell.identifier)
-        
+        if #available(iOS 11, *) { $0.contentInsetAdjustmentBehavior = .never }
         return $0
         }(UITableView(frame: .zero, style: .plain))
     
