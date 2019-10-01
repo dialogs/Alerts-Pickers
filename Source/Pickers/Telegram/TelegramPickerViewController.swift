@@ -304,9 +304,6 @@ final public class TelegramPickerViewController: UIViewController {
         $0.tableHeaderView = collectionView
         $0.tableFooterView = UIView()
         $0.register(LikeButtonCell.self, forCellReuseIdentifier: LikeButtonCell.identifier)
-        if #available(iOS 11, *) {
-            $0.contentInsetAdjustmentBehavior = .always
-        }
         return $0
         }(UITableView(frame: .zero, style: .plain))
     
@@ -411,6 +408,10 @@ final public class TelegramPickerViewController: UIViewController {
     override public func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         preferredContentSize.height = tableView.contentSize.height
+    }
+    
+    override public func viewWillDisappear(_ animated: Bool) {
+        accesDeniedCompletion?()
     }
     
     func resetItems() {

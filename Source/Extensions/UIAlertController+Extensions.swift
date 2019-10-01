@@ -149,11 +149,46 @@ extension UIAlertController {
     ///   - height: height of content viewController
     func set(vc: UIViewController?, width: CGFloat? = nil, height: CGFloat? = nil) {
         guard let vc = vc else { return }
+        vc.view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(onDrage(_:))))
         setValue(vc, forKey: "contentViewController")
         if let height = height {
             vc.preferredContentSize.height = height
             preferredContentSize.height = height
         }
     }
+    
+    @objc private func onDrage(_ sender: UIPanGestureRecognizer) {
+        
+        let translation = sender.translation(in: view)
+        
+        let newY = ensureRange(value: view.frame.minY + translation.y, minimum: 0, maximum: view.frame.maxY)
+        
+        let originOffsetFromBottom = UIScreen.main.bounds.height - view.frame.height
+        
+        if translation.y > 0 ||  view.frame.origin.y > originOffsetFromBottom {
+            view.frame.origin.y = newY
+        }
+
+        if sender.state == .ended {
+            let velocity = sender.velocity(in: view)
+            if velocity.y >= 333 {
+                UIView.animate(withDuration: 0.1, animations: {
+                    self.view.frame.origin.y =  UIScreen.main.bounds.height
+                })
+                self.dismiss(animated: false)
+            } else {
+                UIView.animate(withDuration: 0.2, animations: {
+                    self.view.frame.origin.y =  originOffsetFromBottom
+                })
+            }
+        }
+        
+        sender.setTranslation(.zero, in: view)
+    }
+    
+    private func ensureRange<T>(value: T, minimum: T, maximum: T) -> T where T : Comparable {
+        return min(max(value, minimum), maximum)
+    }
+
 }
 
