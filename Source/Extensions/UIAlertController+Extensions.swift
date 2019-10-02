@@ -183,7 +183,7 @@ extension UIAlertController {
                     let window = UIApplication.shared.keyWindow
                     let bottomPadding = window?.safeAreaInsets.bottom ?? 0
                     UIView.animate(withDuration: 0.2, animations: {
-                        self.view.frame.origin.y =  originOffsetFromBottom - bottomPadding
+                        self.view.frame.origin.y =  originOffsetFromBottom - (bottomPadding == 0 ? kDefaultViewInset : bottomPadding)
                     })
                 } else {
                     UIView.animate(withDuration: 0.2, animations: {
