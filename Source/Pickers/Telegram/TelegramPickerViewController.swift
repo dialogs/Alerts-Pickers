@@ -264,7 +264,7 @@ final public class TelegramPickerViewController: UIViewController {
     }
     
     /// Called in case access to service has been denied.
-    private var cancelComplition: (()-> Void)?
+    private var cancelCompletion: (()-> Void)?
     
     // MARK: Properties
     
@@ -304,6 +304,9 @@ final public class TelegramPickerViewController: UIViewController {
         $0.tableHeaderView = collectionView
         $0.tableFooterView = UIView()
         $0.register(LikeButtonCell.self, forCellReuseIdentifier: LikeButtonCell.identifier)
+        if #available(iOS 11, *) {
+            $0.contentInsetAdjustmentBehavior = .always
+        }
         return $0
         }(UITableView(frame: .zero, style: .plain))
     
@@ -326,12 +329,12 @@ final public class TelegramPickerViewController: UIViewController {
                          localizer: TelegramPickerResourceProvider,
                          configurator: TelegramPickerConfigurator = SimpleTelegramPickerConfigurator(),
                          presentsController: UIViewController? = nil,
-                         cancelComplition: (()-> Void)? = nil){
+                         cancelCompletion: (()-> Void)? = nil){
         self.selection = selection
         self.localizer = localizer
         self.configurator = configurator
         self.presentsController = presentsController
-        self.cancelComplition = cancelComplition
+        self.cancelCompletion = cancelCompletion
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -413,7 +416,7 @@ final public class TelegramPickerViewController: UIViewController {
     }
     
     override public func viewDidDisappear(_ animated: Bool) {
-        cancelComplition?()
+        cancelCompletion?()
     }
     
     func resetItems() {
@@ -539,7 +542,7 @@ final public class TelegramPickerViewController: UIViewController {
         case .denied, .restricted:
             DispatchQueue.main.async {
                 /// User has denied the current app to access the camera.
-                let alert = self.localizer.localizedAlert(failure: .noAccessToCamera, cancelCompletion: self.cancelComplition)
+                let alert = self.localizer.localizedAlert(failure: .noAccessToCamera, cancelCompletion: self.cancelCompletion)
                 self.dismiss(animated: false) {
                     alert?.show(presentsController: self.presentsController)
                 }
@@ -567,7 +570,7 @@ final public class TelegramPickerViewController: UIViewController {
         case .denied, .restricted:
             /// User has denied the current app to access the contacts.
             DispatchQueue.main.async {
-                let alert = self.localizer.localizedAlert(failure: .noAccessToPhoto, cancelCompletion: self.cancelComplition)
+                let alert = self.localizer.localizedAlert(failure: .noAccessToPhoto, cancelCompletion: self.cancelCompletion)
                 self.dismiss(animated: false) {
                     alert?.show(presentsController: self.presentsController)
                 }
@@ -861,7 +864,7 @@ final public class TelegramPickerViewController: UIViewController {
             let selection = self.selection
             alertController?.dismiss(animated: true) {
                 if self.shouldShowPhotosNoAccess {
-                    let alert = self.localizer.localizedAlert(failure: .noAccessToPhoto, cancelCompletion: self.cancelComplition)
+                    let alert = self.localizer.localizedAlert(failure: .noAccessToPhoto, cancelCompletion: self.cancelCompletion)
                     alert?.show(presentsController: self.presentsController)
                 } else {
                     selection(.photoLibrary)

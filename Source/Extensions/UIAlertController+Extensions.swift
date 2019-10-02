@@ -1,6 +1,7 @@
 import UIKit
 import AudioToolbox
 
+let kDefaultViewInset: CGFloat = 8
 // MARK: - Initializers
 extension UIAlertController {
 	
@@ -172,13 +173,14 @@ extension UIAlertController {
         if sender.state == .ended {
             let velocity = sender.velocity(in: view)
             if velocity.y >= 333 {
-                UIView.animate(withDuration: 0.1, animations: {
+                UIView.animate(withDuration: 0.15, animations: {
                     self.view.frame.origin.y =  UIScreen.main.bounds.height
+                }, completion: { _ in
+                    self.dismiss(animated: false)
                 })
-                self.dismiss(animated: false)
             } else {
                 UIView.animate(withDuration: 0.2, animations: {
-                    self.view.frame.origin.y =  originOffsetFromBottom
+                    self.view.frame.origin.y =  originOffsetFromBottom - kDefaultViewInset
                 })
             }
         }
@@ -189,6 +191,7 @@ extension UIAlertController {
     private func ensureRange<T>(value: T, minimum: T, maximum: T) -> T where T : Comparable {
         return min(max(value, minimum), maximum)
     }
-
 }
+
+
 
