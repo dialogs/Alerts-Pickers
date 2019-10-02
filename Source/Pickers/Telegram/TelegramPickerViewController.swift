@@ -263,8 +263,13 @@ final public class TelegramPickerViewController: UIViewController {
         return entries
     }
     
-    /// Called in case access to service has been denied.
+    /// Called in case telegram picket was canceled
     private var cancelCompletion: (()-> Void)?
+    private func clearCancelCompletion() -> (()-> Void)? {
+        let completion = cancelCompletion
+        cancelCompletion = nil
+        return completion
+    }
     
     // MARK: Properties
     
@@ -329,7 +334,7 @@ final public class TelegramPickerViewController: UIViewController {
                          localizer: TelegramPickerResourceProvider,
                          configurator: TelegramPickerConfigurator = SimpleTelegramPickerConfigurator(),
                          presentsController: UIViewController? = nil,
-                         cancelCompletion: (()-> Void)? = nil){
+                         cancelCompletion: (()-> Void)? = {print("Completion ext")}){
         self.selection = selection
         self.localizer = localizer
         self.configurator = configurator
@@ -544,11 +549,11 @@ final public class TelegramPickerViewController: UIViewController {
             setupCameraStream(completionHandler)
             
         case .denied, .restricted:
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [weak self] in
                 /// User has denied the current app to access the camera.
-                let alert = self.localizer.localizedAlert(failure: .noAccessToCamera, cancelCompletion: self.cancelCompletion)
-                self.dismiss(animated: false) {
-                    alert?.show(presentsController: self.presentsController)
+                let alert = self?.localizer.localizedAlert(failure: .noAccessToCamera, cancelCompletion: self?.clearCancelCompletion())
+                self?.alertController?.dismiss(animated: false) {
+                    alert?.show(presentsController: self?.presentsController)
                 }
             }
             break
@@ -573,7 +578,8 @@ final public class TelegramPickerViewController: UIViewController {
             
         case .denied, .restricted:
             /// User has denied the current app to access the contacts.
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
                 let alert = self.localizer.localizedAlert(failure: .noAccessToPhoto, cancelCompletion: self.cancelCompletion)
                 self.dismiss(animated: false) {
                     alert?.show(presentsController: self.presentsController)
@@ -864,7 +870,7 @@ final public class TelegramPickerViewController: UIViewController {
     
     func action(for button: ButtonType) {
         
-        cancelCompletion = nil
+        let cancelComplition = clearCancelCompletion()
         
         switch button {
             
@@ -872,7 +878,7 @@ final public class TelegramPickerViewController: UIViewController {
             let selection = self.selection
             alertController?.dismiss(animated: true) {
                 if self.shouldShowPhotosNoAccess {
-                    let alert = self.localizer.localizedAlert(failure: .noAccessToPhoto, cancelCompletion: self.cancelCompletion)
+                    let alert = self.localizer.localizedAlert(failure: .noAccessToPhoto, cancelCompletion: cancelComplition)
                     alert?.show(presentsController: self.presentsController)
                 } else {
                     selection(.photoLibrary)
