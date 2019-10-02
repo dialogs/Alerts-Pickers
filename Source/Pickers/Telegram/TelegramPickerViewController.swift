@@ -412,7 +412,10 @@ final public class TelegramPickerViewController: UIViewController {
     
     override public func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        preferredContentSize.height = tableView.contentSize.height
+        if preferredContentSize.height != tableView.contentSize.height {
+            preferredContentSize.height = tableView.contentSize.height
+            view.layoutIfNeeded()
+        }
     }
     
     override public func viewDidDisappear(_ animated: Bool) {
