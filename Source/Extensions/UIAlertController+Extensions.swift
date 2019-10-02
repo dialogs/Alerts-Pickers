@@ -179,12 +179,19 @@ extension UIAlertController {
                     self.dismiss(animated: false)
                 })
             } else {
-                UIView.animate(withDuration: 0.2, animations: {
-                    self.view.frame.origin.y =  originOffsetFromBottom - kDefaultViewInset
-                })
+                if #available(iOS 11.0, *) {
+                    let window = UIApplication.shared.keyWindow
+                    let bottomPadding = window?.safeAreaInsets.bottom ?? 0
+                    UIView.animate(withDuration: 0.2, animations: {
+                        self.view.frame.origin.y =  originOffsetFromBottom - bottomPadding
+                    })
+                } else {
+                    UIView.animate(withDuration: 0.2, animations: {
+                        self.view.frame.origin.y =  originOffsetFromBottom - kDefaultViewInset
+                    })
+                }
             }
         }
-        
         sender.setTranslation(.zero, in: view)
     }
     
