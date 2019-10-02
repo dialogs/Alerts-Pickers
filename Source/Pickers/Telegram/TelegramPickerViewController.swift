@@ -693,10 +693,10 @@ final public class TelegramPickerViewController: UIViewController {
     }
     
     private func handleMultiselectionUserChoice(item: StreamItem, at indexPath: IndexPath) {
-        
         switch item {
         case .camera:
             if let stream = cameraStream {
+                cancelCompletion = nil
                 selection(.camera(stream))
             }
         case .photo(let asset):
@@ -716,8 +716,6 @@ final public class TelegramPickerViewController: UIViewController {
     }
     
     func action(withItem item: StreamItem, at indexPath: IndexPath) {
-        
-        cancelCompletion = nil
         
         switch selectionMode {
         case .single:
