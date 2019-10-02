@@ -415,6 +415,7 @@ final public class TelegramPickerViewController: UIViewController {
         if preferredContentSize.height != tableView.contentSize.height {
             preferredContentSize.height = tableView.contentSize.height
             view.layoutIfNeeded()
+            tableView.layoutIfNeeded()
         }
     }
     
@@ -666,7 +667,7 @@ final public class TelegramPickerViewController: UIViewController {
     }
     
     private func handleSingleSelectionUserChoice(item: StreamItem, at indexPath: IndexPath) {
-        
+        cancelCompletion = nil
         var selectionItem: TelegramSelectionType? = nil
         
         switch item {
@@ -692,6 +693,7 @@ final public class TelegramPickerViewController: UIViewController {
     }
     
     private func handleMultiselectionUserChoice(item: StreamItem, at indexPath: IndexPath) {
+        cancelCompletion = nil
         switch item {
         case .camera:
             if let stream = cameraStream {
