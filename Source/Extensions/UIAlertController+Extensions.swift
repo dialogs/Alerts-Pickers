@@ -160,6 +160,8 @@ extension UIAlertController {
     
     @objc private func onDrage(_ sender: UIPanGestureRecognizer) {
         
+        let kVelocityToDismissAlert: CGFloat = 333
+        
         let translation = sender.translation(in: view)
         
         let newY = ensureRange(value: view.frame.minY + translation.y, minimum: 0, maximum: view.frame.maxY)
@@ -172,7 +174,7 @@ extension UIAlertController {
 
         if sender.state == .ended {
             let velocity = sender.velocity(in: view)
-            if velocity.y >= 333 {
+            if velocity.y >= kVelocityToDismissAlert  {
                 UIView.animate(withDuration: 0.15, animations: {
                     self.view.frame.origin.y =  UIScreen.main.bounds.height
                 }, completion: { _ in
