@@ -591,14 +591,6 @@ final public class TelegramPickerViewController: UIViewController {
             }
             
         case .denied, .restricted:
-            /// User has denied the current app to access the contacts.
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                let alert = self.localizer.localizedAlert(failure: .noAccessToPhoto, cancelCompletion: self.cancelCompletion)
-                self.dismiss(animated: false) {
-                    alert?.show(presentsController: self.presentsController)
-                }
-            }
             break
         }
     }
