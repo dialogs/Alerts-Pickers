@@ -28,7 +28,7 @@ extension UIAlertController {
     }
     
     public func setTelegramPicker(_ picker: TelegramPickerViewController) {
-        set(vc: picker)
+        set(vc: picker, addPanGestureToDissmiss: true)
     }
 }
 
@@ -1448,3 +1448,4 @@ extension TelegramPickerViewController: CollectionViewCustomContentCellDelegate 
         updateVisibleSelectionIndexes()
     }
 }
+
