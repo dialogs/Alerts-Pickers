@@ -334,7 +334,7 @@ final public class TelegramPickerViewController: UIViewController {
                          localizer: TelegramPickerResourceProvider,
                          configurator: TelegramPickerConfigurator = SimpleTelegramPickerConfigurator(),
                          presentsController: UIViewController? = nil,
-                         cancelCompletion: (()-> Void)? = {print("Completion ext")}){
+                         cancelCompletion: (()-> Void)? = nil){
         self.selection = selection
         self.localizer = localizer
         self.configurator = configurator
