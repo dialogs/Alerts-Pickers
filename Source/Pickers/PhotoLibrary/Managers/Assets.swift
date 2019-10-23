@@ -173,6 +173,11 @@ public struct Assets {
             let manager: PHImageManager = cacheAllowed ? cacheManager(size: size) : PHImageManager.default()
             
             let requestOptions = defaultImageRequestOptions
+            ///iOS 13 resize option doesn't ignoring by resize option how it declare in PHIImageManagerMaximumSize topic
+            ///Also PHIManager return in closure nil in this case.
+            if size == PHImageManagerMaximumSize {
+                requestOptions.resizeMode = .none
+            }
             
             manager.requestImage(for: asset, targetSize: size, contentMode: .aspectFill, options: requestOptions) { image, info in
                 DispatchQueue.main.async {
