@@ -430,6 +430,11 @@ final public class TelegramPickerViewController: UIViewController {
         cancelCompletion?()
     }
     
+    deinit {
+        guard let input = cameraStream?.input else { return }
+        self.cameraStream?.session.removeInput(input)
+    }
+    
     func resetItems() {
         
         var newItems: [StreamItem] = []
