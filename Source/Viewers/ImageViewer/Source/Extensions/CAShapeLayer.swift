@@ -77,6 +77,11 @@ extension CAShapeLayer {
         circle.path = circlePath.cgPath
         circle.fillColor = fillColor.cgColor
 
+        let triangleLayer = CAShapeLayer()
+        triangleLayer.path = trianglePath.cgPath
+        triangleLayer.fillColor = UIColor.black.withAlphaComponent(0.5).cgColor
+        circle.addSublayer(triangleLayer)
+        
         return circle
     }
 
