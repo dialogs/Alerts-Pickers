@@ -13,7 +13,8 @@ public protocol TelegramPickerConfigurator {
     
     func modifyGalleryConfig(_ config: inout GalleryConfiguration)
     func needCallSelectionForAssetsBeforeCompletion() -> Bool
-    
+
+    var needSaveCapturedMediaToCameraRoll: Bool { get }
 }
 
 open class SimpleTelegramPickerConfigurator: TelegramPickerConfigurator {
@@ -29,5 +30,7 @@ open class SimpleTelegramPickerConfigurator: TelegramPickerConfigurator {
     public func needCallSelectionForAssetsBeforeCompletion() -> Bool {
         return false
     }
+
+    public var needSaveCapturedMediaToCameraRoll: Bool = false
     
 }
