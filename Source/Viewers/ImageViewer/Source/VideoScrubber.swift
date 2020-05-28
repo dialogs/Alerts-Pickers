@@ -28,6 +28,12 @@ open class VideoScrubber: UIControl {
         case finished
     }
     
+    public var sendButtonTintColor: UIColor = PickerStyle.shared.sendButtonBackgroundColor {
+        didSet {
+            sendButton.backgroundColor = sendButtonTintColor
+        }
+    }
+    
     public private(set) var playbackState: PlaybackState = .paused {
         didSet {
             if oldValue != playbackState {
@@ -121,6 +127,7 @@ open class VideoScrubber: UIControl {
     func setup() {
 
         self.tintColor = .white
+        self.sendButton.backgroundColor = sendButtonTintColor
         self.clipsToBounds = true
         pauseButton.isHidden = true
         replayButton.isHidden = true

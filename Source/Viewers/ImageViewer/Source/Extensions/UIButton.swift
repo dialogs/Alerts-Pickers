@@ -118,13 +118,14 @@ extension UIButton {
         return button
     }
     
-    static func selectionButton(size: CGSize = CGSize(width: 33, height: 33)) -> UIButton {
+    static func selectionButton(size: CGSize = CGSize(width: 33, height: 33),
+                                tintColor: UIColor = PickerStyle.shared.selectionButtonTintColor) -> UIButton {
         let button = PickerCustomizableButton(frame: CGRect(origin: CGPoint.zero, size: size))
         
         let bundle = Bundle(for: GalleryViewController.self)
         let unselectedImage = UIImage(named: "unselected_asset", in: bundle, compatibleWith: nil)
         
-        button.setBackgroundColor(PickerStyle.shared.selectionButtonTintColor, state: .selected)
+        button.setBackgroundColor(tintColor, state: .selected)
         button.layer.cornerRadius = button.bounds.size.width / 2
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor.white.cgColor
@@ -140,14 +141,14 @@ extension UIButton {
         return button
     }
     
-    static func sendButton() -> UIButton {
+    static func sendButton(tintColor: UIColor = PickerStyle.shared.selectionButtonTintColor) -> UIButton {
         let button = UIButton(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: 40, height: 40)))
         let bundle = Bundle(for: GalleryViewController.self)
     
         let image = UIImage(named: "arrow", in: bundle, compatibleWith: nil)
         button.setImage(image, for: .normal)
         
-        button.backgroundColor = PickerStyle.shared.sendButtonBackgroundColor
+        button.backgroundColor = tintColor
         button.layer.cornerRadius = button.bounds.size.width / 2
 
         return button

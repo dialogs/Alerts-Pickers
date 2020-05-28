@@ -19,11 +19,11 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
     open var footerView: UIView?
     //TODO: change close button to circle selection button
     fileprivate var closeButton: UIButton? = UIButton.closeButton()
-    fileprivate var selectionButton: UIButton? = UIButton.selectionButton()
+    fileprivate lazy var selectionButton: UIButton? = UIButton.selectionButton(tintColor: selectionButtonTintColor)
     fileprivate var seeAllCloseButton: UIButton? = nil
     fileprivate var thumbnailsButton: UIButton? =  nil
     fileprivate var deleteButton: UIButton? = nil
-    fileprivate var sendButton: UIButton? = UIButton.sendButton()
+    fileprivate lazy var sendButton: UIButton? = UIButton.sendButton(tintColor: sendButtonTintColor)
     fileprivate let scrubber = VideoScrubber()
     fileprivate let scrubberBackgroundView = UIVisualEffectView.init(effect: UIBlurEffect.init(style: .dark))
     
@@ -62,6 +62,8 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
     fileprivate var marginsBottom: CGFloat = 15.0
     fileprivate var marginsTop: CGFloat = 8.0
     fileprivate var toggleDecorationViewBySingleTap: Bool = false
+    fileprivate var sendButtonTintColor: UIColor = PickerStyle.shared.sendButtonBackgroundColor
+    fileprivate var selectionButtonTintColor: UIColor = PickerStyle.shared.selectionButtonTintColor
     
     /// COMPLETION BLOCKS
     /// If set, the block is executed right after the initial launch animations finish.
@@ -80,7 +82,11 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
     @available(*, unavailable)
     required public init?(coder: NSCoder) { fatalError() }
     
-    public init(startIndex: Int, itemsDataSource: GalleryItemsDataSource, itemsDelegate: GalleryItemsDelegate? = nil, displacedViewsDataSource: GalleryDisplacedViewsDataSource? = nil, configuration: GalleryConfiguration = []) {
+    public init(startIndex: Int,
+                itemsDataSource: GalleryItemsDataSource,
+                itemsDelegate: GalleryItemsDelegate? = nil,
+                displacedViewsDataSource: GalleryDisplacedViewsDataSource? = nil,
+                configuration: GalleryConfiguration = []) {
         
         self.currentIndex = startIndex
         self.itemsDelegate = itemsDelegate
@@ -120,6 +126,12 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
             case .continuePlayVideoOnEnd(let enabled):          continueNextVideoOnFinish = enabled
             case .seeAllCloseLayout(let layout):                seeAllCloseLayout = layout
             case .videoControlsColor(let color):                scrubber.tintColor = color
+            case .sendButtonTintColor(let color):
+                
+                sendButtonTintColor = color
+                scrubber.sendButtonTintColor = color
+                
+            case .selectionButtonTintColor(let color):          selectionButtonTintColor = color
             case .closeButtonMode(let buttonMode):
                 
                 switch buttonMode {
