@@ -1016,6 +1016,10 @@ extension TelegramPickerViewController: UICollectionViewDataSource {
                          cellForAsset asset: PHAsset,
                          at indexPath: IndexPath) -> UICollectionViewCell {
         var cell: CollectionViewCustomContentCell<UIImageView>
+        
+        var configuration = galleryConfiguration()
+        configurator.modifyGalleryConfig(&configuration)
+        
         switch asset.mediaType {
         case .video:
             cell = dequeue(collectionView, id: .video, indexPath: indexPath)
@@ -1024,6 +1028,17 @@ extension TelegramPickerViewController: UICollectionViewDataSource {
         }
         
         cell.showSelectionCircles = selectionMode == .multiple
+        
+        var color: UIColor? {
+            for item in configuration {
+                if case GalleryConfigurationItem.selectionButtonTintColor(let color) = item {
+                    return color
+                }
+            }
+            return nil
+        }
+        
+        cell.setSelectionElement(color: color ?? view.tintColor, forState: .selected)
         
         return cell
     }
@@ -1406,7 +1421,9 @@ private extension TelegramPickerViewController {
             
             GalleryConfigurationItem.statusBarHidden(true),
             GalleryConfigurationItem.displacementKeepOriginalInPlace(false),
-            GalleryConfigurationItem.displacementInsetMargin(50)
+            GalleryConfigurationItem.displacementInsetMargin(50),
+            GalleryConfigurationItem.selectionButtonTintColor(.red),
+            GalleryConfigurationItem.sendButtonTintColor(.red)
         ]
     }
     

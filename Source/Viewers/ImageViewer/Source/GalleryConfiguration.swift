@@ -158,6 +158,12 @@ public enum GalleryConfigurationItem {
 
     ///Tint color of video controls
     case videoControlsColor(UIColor)
+    
+    ///Tint color of selection button
+    case selectionButtonTintColor(UIColor)
+    
+    ///Tint color of send button
+    case sendButtonTintColor(UIColor)
 }
 
 public enum GalleryRotationMode {

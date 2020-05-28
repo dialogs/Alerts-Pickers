@@ -19,7 +19,8 @@ public class CollectionViewCustomContentCell<CustomContentView: UIView>: UIColle
     
     internal let inset: CGFloat = 6
     
-    public let selectionElement: UIButton = UIButton.selectionButton(size: CGSize(width: 28, height: 28))
+    public lazy var selectionElement: UIButton = UIButton.selectionButton(size: CGSize(width: 28, height: 28),
+                                                                          tintColor: tintColor)
     
     private var selectionCenter: CGPoint = .zero {
         didSet {
@@ -57,6 +58,11 @@ public class CollectionViewCustomContentCell<CustomContentView: UIView>: UIColle
         self.addSubview(selectionElement)
         
         setupSelectionButton()
+    }
+    
+    public func setSelectionElement(color: UIColor, forState: UIControlState) {
+        guard let customButton = selectionElement as? PickerCustomizableButton else { return }
+        customButton.setBackgroundColor(color, state: forState)
     }
     
     public func updateSelectionIndex(isSelected: Bool, with index: Int, animated: Bool) {
