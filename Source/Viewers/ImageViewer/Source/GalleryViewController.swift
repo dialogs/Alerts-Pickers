@@ -106,6 +106,7 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
             case .closeLayout(let layout):                      closeLayout = layout
             case .deleteLayout(let layout):                     deleteLayout = layout
             case .thumbnailsLayout(let layout):                 thumbnailsLayout = layout
+            case .selectionLayout(let layout):                  selectionLayout = layout
             case .statusBarHidden(let hidden):                  statusBarHidden = hidden
             case .hideDecorationViewsOnLaunch(let hidden):      decorationViewsHidden = hidden
             case .decorationViewsFadeDuration(let duration):    decorationViewsFadeDuration = duration
@@ -300,11 +301,7 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
     open override func viewDidLoad() {
         super.viewDidLoad()
         
-        if #available(iOS 11.0, *) {
-            if (statusBarHidden || UIScreen.hasNotch) {
-                additionalSafeAreaInsets = UIEdgeInsets(top: -20, left: 0, bottom: 0, right: 0)
-            }
-        }
+        updateAdditionalSafeAreaInsets()
         
         configureHeaderView()
         configureFooterView()
@@ -330,6 +327,25 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
         presentInitially()
         
         initialPresentationDone = true
+    }
+    
+    open override var prefersStatusBarHidden: Bool {
+        return statusBarHidden
+    }
+    
+    private func updateAdditionalSafeAreaInsets() {
+        if #available(iOS 11.0, *) {
+            let statusBarHeight = UIApplication.shared.statusBarFrame.size.height
+            let isDeviceNotXSeries = statusBarHeight == 20
+            let ignoreTopStatusBarInset = UIDevice.current.orientation.isLandscape || isDeviceNotXSeries
+            let topInset = ignoreTopStatusBarInset ? 0 : -20
+            if (statusBarHidden || UIScreen.hasNotch) {
+                additionalSafeAreaInsets = UIEdgeInsets(top: CGFloat(topInset), left: 0,
+                                                        bottom: 0, right: 0)
+            } else {
+                additionalSafeAreaInsets = .zero
+            }
+        }
     }
     
     fileprivate func presentInitially() {
@@ -368,6 +384,7 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
             self.view.transform = transform
             self.view.bounds = bounds
         }
+        updateAdditionalSafeAreaInsets()
         
         overlayView.frame = view.bounds.insetBy(dx: -UIScreen.main.bounds.width * 2, dy: -UIScreen.main.bounds.height * 2)
         
@@ -385,7 +402,11 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
         if #available(iOS 11.0, *) {
             return view.safeAreaInsets
         } else {
-            return UIEdgeInsets(top: statusBarHidden ? 0.0 : 20.0, left: 0.0, bottom: 0.0, right: 0.0)
+            return UIEdgeInsets(
+                top: statusBarHidden ? 0.0 : 20.0,
+                left: 0.0,
+                bottom: 0.0,
+                right: 0.0)
         }
     }
     
@@ -398,18 +419,17 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
         case .pinRight(let marginTop, let marginRight):
             
             button.autoresizingMask = [.flexibleBottomMargin, .flexibleLeftMargin]
-            button.frame.origin.x = self.view.bounds.size.width - marginRight - button.bounds.size.width
+            button.frame.origin.x = self.view.bounds.size.width - marginRight - button.bounds.size.width - defaultInsets.right
             
             if button == sendButton {
-                button.frame.origin.y = self.view.bounds.height - button.bounds.height - marginTop
+                button.frame.origin.y = self.view.bounds.height - button.bounds.height - marginTop - defaultInsets.top
             } else {
                 button.frame.origin.y = defaultInsets.top + marginTop
             }
             
         case .pinLeft(let marginTop, let marginLeft):
-            
             button.autoresizingMask = [.flexibleBottomMargin, .flexibleRightMargin]
-            button.frame.origin.x = marginLeft
+            button.frame.origin.x = defaultInsets.left + marginLeft
             button.frame.origin.y = defaultInsets.top + marginTop
         }
     }
@@ -586,7 +606,7 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
     // MARK: - Animations
     
     @objc fileprivate func rotate() {
-        
+        updateAdditionalSafeAreaInsets()
         /// If the app supports rotation on global level, we don't need to rotate here manually because the rotation
         /// of key Window will rotate all app's content with it via affine transform and from the perspective of the
         /// gallery it is just a simple relayout. Allowing access to remaining code only makes sense if the app is

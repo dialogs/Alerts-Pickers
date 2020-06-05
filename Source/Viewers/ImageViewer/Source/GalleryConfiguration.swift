@@ -41,7 +41,10 @@ public enum GalleryConfigurationItem {
 
     /// Layout behaviour for the Delete button.
     case deleteLayout(ButtonLayout)
-
+    
+    /// Layout behavior for the Selection button
+    case selectionLayout(ButtonLayout)
+    
     /// This spinner is shown when we page to an image page, but the image itself is still loading.
     case spinnerStyle(UIActivityIndicatorViewStyle)
 
