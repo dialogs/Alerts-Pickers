@@ -12,6 +12,7 @@ public enum TelegramSelectionType {
     case camera(Camera.PreviewStream)
     case document
     case photosAsDocuments([PHAsset])
+    case scannerDocument
 }
 
 extension UIAlertController {
@@ -46,6 +47,7 @@ final public class TelegramPickerViewController: UIViewController {
         case sendPhotos
         case documentAsFile
         case photoAsFile
+        case visionScanner
     }
     
     public enum SelectionMode: Int {
@@ -869,7 +871,7 @@ final public class TelegramPickerViewController: UIViewController {
     
     private func buttonsForMode(_ mode: Mode) -> [ButtonType] {
         switch mode {
-        case .normal: return [.photoOrVideo, .file, .location, .contact]
+        case .normal: return [.photoOrVideo, .file, .location, .contact, .visionScanner]
         case .bigPhotoPreviews: return [.sendPhotos, .photoAsFile]
         case .documentType: return [.documentAsFile, .photoAsFile]
         }
@@ -946,6 +948,11 @@ final public class TelegramPickerViewController: UIViewController {
             alertController?.dismiss(animated: true) {
                 selection(.document)
             }
+        case .visionScanner:
+            let selection = self.selection
+            alertController?.dismiss(animated: true, completion: {
+                selection(.scannerDocument)
+            })
         }
     }
 }
@@ -1348,6 +1355,7 @@ extension TelegramPickerViewController: GalleryItemsDelegate {
         case .sendPhotos: localizableButton = .photos(count: selectedAssets.count)
         case .documentAsFile: localizableButton = .sendDocumentAsFile
         case .photoAsFile: localizableButton = .sendPhotoAsFile(count: selectedAssets.count)
+        case .visionScanner: localizableButton = .contact
         }
         
         return self.localizer.localized(buttonType: localizableButton)

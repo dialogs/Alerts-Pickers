@@ -413,6 +413,8 @@ class ViewController: UIViewController {
                     Log("Photo as documents: " + assets.description)
                 case .document:
                     Log("Document")
+                case .scannerDocument:
+                    Log("scannerDocumnt")
                 }
             }, localizer: ExampleTelegramPickerLocalizer(), presentsController: self)
             
