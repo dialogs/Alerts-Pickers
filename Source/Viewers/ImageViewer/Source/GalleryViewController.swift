@@ -337,7 +337,8 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
         if #available(iOS 11.0, *) {
             let statusBarHeight = UIApplication.shared.statusBarFrame.size.height
             let isDeviceNotXSeries = statusBarHeight == 20
-            let ignoreTopStatusBarInset = UIDevice.current.orientation.isLandscape || isDeviceNotXSeries
+            let orientation = UIDevice.current.orientation
+            let ignoreTopStatusBarInset = orientation.isLandscape || orientation.isFlat || isDeviceNotXSeries
             let topInset = ignoreTopStatusBarInset ? 0 : -20
             if (statusBarHidden || UIScreen.hasNotch) {
                 additionalSafeAreaInsets = UIEdgeInsets(top: CGFloat(topInset), left: 0,
