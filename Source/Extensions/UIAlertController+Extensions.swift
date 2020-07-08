@@ -164,6 +164,13 @@ extension UIAlertController {
     }
     
     @objc private func onDrage(_ sender: UIPanGestureRecognizer) {
+        if
+            sender.state == .changed,
+            let vc = value(forKey: "contentViewController") as? TelegramPickerViewController,
+            let tableView = vc.view as? UITableView,
+            tableView.contentOffset.y != 0 {
+            return
+        }
         
         let kVelocityToDismissAlert: CGFloat = 333
         
