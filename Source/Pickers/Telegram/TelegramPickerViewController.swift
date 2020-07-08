@@ -309,6 +309,7 @@ final public class TelegramPickerViewController: UIViewController {
         $0.tableHeaderView = collectionView
         $0.tableFooterView = UIView()
         $0.register(LikeButtonCell.self, forCellReuseIdentifier: LikeButtonCell.identifier)
+        $0.showsVerticalScrollIndicator = false
         if #available(iOS 11, *) {
             $0.contentInsetAdjustmentBehavior = .always
         }
@@ -947,6 +948,14 @@ final public class TelegramPickerViewController: UIViewController {
                 selection(.document)
             }
         }
+    }
+}
+
+// MARK: - UIGestureRecognizerDelegate
+
+extension TelegramPickerViewController: UIGestureRecognizerDelegate {
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }
 
