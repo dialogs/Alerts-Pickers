@@ -28,18 +28,15 @@ public final class CameraView: UIView {
             guard oldValue !== videoLayer else {
                 return
             }
-            
             oldValue?.removeFromSuperlayer()
             
-            NotificationCenter.default.removeObserver(self,
-                                                      name: NSNotification.Name.UIDeviceOrientationDidChange,
-                                                      object: nil)
+            let name = NSNotification.Name.UIDeviceOrientationDidChange
+            NotificationCenter.default.removeObserver(self, name: name, object: nil)
             
             if let newLayer = videoLayer {
-                NotificationCenter.default.addObserver(forName: NSNotification.Name.UIDeviceOrientationDidChange,
-                                                       object: nil,
-                                                       queue: .main,
-                                                       using: rotate)
+                NotificationCenter.default.addObserver(
+                    forName: name, object: nil, queue: .main, using: rotate
+                )
                 self.layer.insertSublayer(newLayer, below: cameraIconImageView.layer)
             }
         }
@@ -51,36 +48,9 @@ public final class CameraView: UIView {
         return UIImageView(image: cameraIcon)
     }()
     
-    private var previousOrientation = UIDevice.current.orientation
-    
     private func rotate(for notification: Notification) {
-        
-        let currentOrientation = UIDevice.current.orientation
-        var degrees = 0.0
-        
-        if previousOrientation == .portrait && currentOrientation == .landscapeLeft {
-            degrees = -90.0
-        } else if previousOrientation == .portrait && currentOrientation == .landscapeRight {
-            degrees = 90.0
-        } else if previousOrientation == .portrait && currentOrientation == .portraitUpsideDown {
-            degrees = 180.0
-        } else if previousOrientation == .portraitUpsideDown && currentOrientation == .landscapeLeft {
-            degrees = 90.0
-        } else if previousOrientation == .portraitUpsideDown && currentOrientation == .landscapeRight {
-            degrees = -90.0
-        } else if previousOrientation == .landscapeRight && currentOrientation == .landscapeLeft {
-            degrees = 90.0
-        } else if previousOrientation == .landscapeRight && currentOrientation == .portraitUpsideDown {
-            degrees = 180.0
-        } else if previousOrientation == .landscapeLeft && currentOrientation == .landscapeRight {
-            degrees = -90.0
-        } else if previousOrientation == .landscapeLeft && currentOrientation == .portraitUpsideDown {
-            degrees = 180.0
-        }
-        
-        if let videoLayer = videoLayer {
-            let radians = CGFloat(degrees * Double.pi / 180)
-            videoLayer.transform = CATransform3DMakeRotation(radians, 0.0, 0.0, 1.0)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            self.setNeedsLayout()
         }
     }
     
@@ -104,28 +74,16 @@ public final class CameraView: UIView {
     }
     
     public override func layoutSubviews() {
+        let app = UIApplication.shared
+        if videoLayer?.connection?.isVideoOrientationSupported ?? false,
+            let orientation = app.statusBarOrientation.asVideoCaptureOrientation {
+            videoLayer?.connection?.videoOrientation = orientation
+        }
+        
         super.layoutSubviews()
         
         if videoLayer?.frame != self.bounds {
             videoLayer?.frame = self.bounds
-        }
-        
-        var degrees = 0.0
-        
-        switch UIDevice.current.orientation {
-        case .portraitUpsideDown:
-            degrees = 180.0
-        case.landscapeLeft:
-            degrees = -90.0
-        case.landscapeRight:
-            degrees = 90.0
-        default:
-            degrees = 0.0
-        }
-        
-        if let videoLayer = videoLayer {
-            let radians = CGFloat(degrees * Double.pi / 180)
-            videoLayer.transform = CATransform3DMakeRotation(radians, 0.0, 0.0, 1.0)
         }
         
         cameraIconImageView.center = CGPoint(x: bounds.width/2, y: bounds.height/2)
@@ -135,4 +93,17 @@ public final class CameraView: UIView {
         self.representedStream = nil
     }
     
+}
+
+fileprivate extension UIInterfaceOrientation {
+    
+    var asVideoCaptureOrientation: AVCaptureVideoOrientation? {
+        switch self {
+        case .portraitUpsideDown: return .portraitUpsideDown
+        case .landscapeRight: return .landscapeRight
+        case .landscapeLeft: return .landscapeLeft
+        case .portrait: return .portrait
+        default: return nil
+        }
+    }
 }
