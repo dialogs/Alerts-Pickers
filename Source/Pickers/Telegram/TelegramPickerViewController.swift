@@ -172,7 +172,7 @@ final public class TelegramPickerViewController: UIViewController {
         static let insets: UIEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         static let minimumInteritemSpacing: CGFloat = 6
         static let minimumLineSpacing: CGFloat = 6
-        static let maxHeight: CGFloat = UIScreen.main.bounds.width / 2
+        static var maxHeight: CGFloat { return min(UIScreen.main.bounds.height / 2, 200) }
         static let multiplier: CGFloat = 2
     }
     
@@ -955,7 +955,11 @@ final public class TelegramPickerViewController: UIViewController {
 
 extension TelegramPickerViewController: UIGestureRecognizerDelegate {
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
+        guard let pan = gestureRecognizer as? UIPanGestureRecognizer else { return false }
+        let velocity = pan.velocity(in: view)
+        let isVertical = abs(velocity.y) > abs(velocity.x)
+        
+        return isVertical
     }
 }
 
