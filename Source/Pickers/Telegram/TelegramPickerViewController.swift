@@ -322,6 +322,7 @@ final public class TelegramPickerViewController: UIViewController {
         return items.filter({ $0 != .camera })
     }
     
+    private var isDidDismissWithSelectionItem = false
     let selection: TelegramSelection
     let localizer: TelegramPickerResourceProvider
     let configurator: TelegramPickerConfigurator
@@ -428,6 +429,7 @@ final public class TelegramPickerViewController: UIViewController {
     }
     
     override public func viewDidDisappear(_ animated: Bool) {
+        guard !isDidDismissWithSelectionItem else { return }
         cancelCompletion?()
     }
     
@@ -1198,6 +1200,7 @@ extension TelegramPickerViewController: UICollectionViewDataSource {
     }
     
     private func dismissWithSelectionItem(item: TelegramSelectionType) {
+        isDidDismissWithSelectionItem = true
         let selection = self.selection
         switch item {
         case .media(_):
