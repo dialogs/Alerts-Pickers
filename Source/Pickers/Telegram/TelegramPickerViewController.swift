@@ -598,7 +598,7 @@ final public class TelegramPickerViewController: UIViewController {
                 self.runAssetsCollection()
             }
             
-        case .denied, .restricted, .limited:
+        default:
             break
         }
     }
