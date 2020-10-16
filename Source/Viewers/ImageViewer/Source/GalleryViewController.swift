@@ -821,7 +821,7 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
         self.dismiss(animated: false, completion: nil)
     }
     
-    public func itemControllerDidSendTap(_ controller: ItemController) {
+    public func itemControllerDidSendTap(_ controller: ItemController?) {
         itemsDelegate?.sendItem(self, at: currentIndex)
     }
 }

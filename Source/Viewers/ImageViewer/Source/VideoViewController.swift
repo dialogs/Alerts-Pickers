@@ -79,7 +79,6 @@ class VideoViewController: ItemBaseController<VideoView> {
 
         self.itemView.player = player
         self.itemView.contentMode = .scaleAspectFill
-        self.scrubber.sendButton.addTarget(self, action: #selector(sendVideo(sender:)), for: .touchUpInside)
         self.scrubber.onDidChangePlaybackState = { [weak self] _ in
             self?.updateEmbeddedPlayButtonVisibility()
         }
@@ -139,10 +138,6 @@ class VideoViewController: ItemBaseController<VideoView> {
     
     @objc func playVideoEmbedButtonTapped() {
         switchPlayblackState()
-    }
-    
-    @objc func sendVideo(sender: UIButton) {
-        delegate?.itemControllerDidSendTap(self)
     }
 
     override func closeDecorationViews(_ duration: TimeInterval) {
