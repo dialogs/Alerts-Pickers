@@ -24,5 +24,5 @@ public protocol ItemControllerDelegate: class {
     func itemControllerWillAppear(_ controller: ItemController)
     func itemControllerWillDisappear(_ controller: ItemController)
     func itemControllerDidAppear(_ controller: ItemController)
-    func itemControllerDidSendTap(_ controller: ItemController)
+    func itemControllerDidSendTap(_ controller: ItemController?)
 }

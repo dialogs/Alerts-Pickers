@@ -25,6 +25,7 @@ final class GalleryPagingDataSource: NSObject, UIPageViewControllerDataSource {
         self.displacedViewsDataSource = displacedViewsDataSource
         self.scrubber = scrubber
         self.configuration = configuration
+        super.init()
 
         if itemsDataSource.itemCount() > 1 { // Potential carousel mode present in configuration only makes sense for more than 1 item
 
@@ -37,6 +38,8 @@ final class GalleryPagingDataSource: NSObject, UIPageViewControllerDataSource {
                 }
             }
         }
+        
+        scrubber.sendButton.addTarget(self, action: #selector(sendVideo(sender:)), for: .touchUpInside)
     }
 
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
@@ -103,5 +106,9 @@ final class GalleryPagingDataSource: NSObject, UIPageViewControllerDataSource {
 
             return vc
         }
+    }
+    
+    @objc func sendVideo(sender: UIButton) {
+        itemControllerDelegate?.itemControllerDidSendTap(nil)
     }
 }
