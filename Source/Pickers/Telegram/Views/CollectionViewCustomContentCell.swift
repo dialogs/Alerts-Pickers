@@ -52,9 +52,7 @@ public class CollectionViewCustomContentCell<CustomContentView: UIView>: UIColle
     public func setup() {
         backgroundColor = .clear
         
-        let contentView: UIView = UIView()
-        contentView.addSubview(customContentView)
-        backgroundView = contentView
+        self.addSubview(customContentView)
         self.addSubview(selectionElement)
         
         setupSelectionButton()
@@ -72,7 +70,7 @@ public class CollectionViewCustomContentCell<CustomContentView: UIView>: UIColle
     override public func layoutSubviews() {
         super.layoutSubviews()
         
-        customContentView.frame = contentView.bounds
+        customContentView.frame = self.bounds
         customContentView.layer.cornerRadius = 12
         
         updateSelectionAppearance()
