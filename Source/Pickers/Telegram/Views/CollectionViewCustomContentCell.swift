@@ -49,6 +49,12 @@ public class CollectionViewCustomContentCell<CustomContentView: UIView>: UIColle
         }
     }
     
+    public override func didAddSubview(_ subview: UIView) {
+        super.didAddSubview(subview)
+        /// iOS 14 break hierarchy so that is solution
+        bringSubview(toFront: selectionElement)
+    }
+    
     public func setup() {
         backgroundColor = .clear
         
@@ -80,12 +86,6 @@ public class CollectionViewCustomContentCell<CustomContentView: UIView>: UIColle
         updateSelectionLayout()
         
         //TODO: check for selection on reuse
-    }
-    
-    func createView(_ block: (UIView) -> ()) -> UIView {
-        let view = UIView()
-        block(view)
-        return view
     }
     
     func updateSelectionLayout() {
