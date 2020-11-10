@@ -130,10 +130,6 @@ extension UIButton {
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor.white.cgColor
         button.setBackgroundImage(unselectedImage, for: .normal)
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOpacity = 0.2
-        button.layer.shadowRadius = 2
-        button.layer.shadowOffset = CGSize.zero
         
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: size.width / 2)
         button.setTitleColor(UIColor.white, for: .selected)
