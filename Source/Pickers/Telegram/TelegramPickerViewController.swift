@@ -172,8 +172,9 @@ final public class TelegramPickerViewController: UIViewController {
         static let insets: UIEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         static let minimumInteritemSpacing: CGFloat = 6
         static let minimumLineSpacing: CGFloat = 6
-        static var maxHeight: CGFloat { return min(UIScreen.main.bounds.height / 2, 200) }
+        static var maxHeight: CGFloat { return min(UIScreen.main.bounds.height / 3, 200) }
         static let multiplier: CGFloat = 2
+        static var minHeight = max(UI.maxHeight / UI.multiplier, 76)
     }
     
     public enum DismissBehavior {
@@ -221,7 +222,7 @@ final public class TelegramPickerViewController: UIViewController {
     
     var preferredTableHeaderHeight: CGFloat {
         switch mode {
-        case .normal: return UI.maxHeight / UI.multiplier + UI.insets.top + UI.insets.bottom
+        case .normal: return UI.minHeight + UI.insets.top + UI.insets.bottom
         case .bigPhotoPreviews: return UI.maxHeight + UI.insets.top + UI.insets.bottom
         case .documentType: return 0
         }
@@ -366,14 +367,13 @@ final public class TelegramPickerViewController: UIViewController {
     func sizeForAsset(asset: PHAsset) -> CGSize {
         switch mode {
         case .bigPhotoPreviews:
-            let minValue: CGFloat = UI.maxHeight / UI.multiplier
             var size = CGSize.init(width: asset.pixelWidth, height: asset.pixelHeight)
             let multiplier = UI.maxHeight / size.height
             size.height *= multiplier
-            size.width = max(minValue, size.width*multiplier)
+            size.width = max(UI.minHeight, size.width*multiplier)
             return size
         case .normal:
-            let value: CGFloat = UI.maxHeight / UI.multiplier
+            let value: CGFloat = UI.minHeight
             return CGSize(width: value, height: value)
         case .documentType:
             return .zero
@@ -385,7 +385,7 @@ final public class TelegramPickerViewController: UIViewController {
         case .photo(let asset), .video(let asset):
             return sizeForAsset(asset: asset)
         default:
-            let side = UI.maxHeight / UI.multiplier
+            let side = UI.minHeight
             return CGSize.init(width: side, height: side)
         }
     }
